@@ -30,10 +30,10 @@ public class Zona {
 
 	private Integer dificultadPropagada;
     
-	private ArrayList<Zona> zonasContiguas=new ArrayList<Zona>();
+	//private ArrayList<Zona> zonasContiguas=new ArrayList<Zona>();
 	private GestorModelo gestorModelo;
 	
-	public ArrayList<Zona> getZonasContiguas() {
+/*	public ArrayList<Zona> getZonasContiguas() {
 		return zonasContiguas;
 	}
 	
@@ -42,7 +42,7 @@ public class Zona {
 	public void setZonasContiguas(ArrayList<Zona> zonasContiguas) {
 		this.zonasContiguas = zonasContiguas;
 		
-	}
+	}*/
 	
 	public void setZonaContigua(Zona contiguo, Integer distancia) {
         this.contiguos.put(contiguo, distancia);
@@ -260,7 +260,7 @@ public class Zona {
     }
 
 
-
+/*
 	private boolean esContigua(int idZona2) {  //esto sobrara cuando pase todo a hastable
 		boolean encontrado =false;
 	
@@ -273,13 +273,18 @@ public class Zona {
 		 }
 		return encontrado;
 	}
-
+*/
 	public Integer getDificultadLocal() {
 		return this.dificultadLocal;
 	}
 
 	public Hashtable<Zona,Integer> getZonasContiguasHash() {
 		return contiguos;
+	}
+
+	public boolean contiene(Zona zona) {
+		
+		return this.contiguos.keySet().contains(zona);
 	}
 	
 	
