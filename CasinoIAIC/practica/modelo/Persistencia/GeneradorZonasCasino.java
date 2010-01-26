@@ -1,6 +1,7 @@
 package practica.modelo.Persistencia;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Random;
 
@@ -20,7 +21,7 @@ public class GeneradorZonasCasino {
 	Zona[][] tablaZonas;
 	GestorMinijuegos gestor;
 
-	public  Casino generaCasinos2(GestorModelo gm){
+	/*public  Casino generaCasinos2(GestorModelo gm){
 		//********* esto se cambiar‡
 		int ad[][]= new int[100][100]; //matriz de adyacencia
 		for(int i=0;i<100;i++)
@@ -84,12 +85,17 @@ public class GeneradorZonasCasino {
 		
 		//a–adimos zonas contiguas a cada zona creada previamente
 		ArrayList<Zona> zonasContiguas;
+		Hashtable<Zona,Integer> contiguas;
 		
 		for (int i=0;i<100;i++){
 			zonasContiguas = new ArrayList<Zona>();
 			//for (int j=i+1;j<100;j++){
 			for (int j=0;j<100;j++){ //eficiencia regular tirando a mal, pero solo se ejecutar‡ para inicializar
-				if (ad[i][j]==1)zonasContiguas.add(listaZonas[j]);
+				if (ad[i][j]==1){
+					zonasContiguas.add(listaZonas[j]);
+					contiguas.
+					listaZonas[i].setZonaContigua(listaZonas[j],)
+				}
 				//if (ad[j][i]==1)zonasContiguas.add(listaZonas[j]);
 			}
 			
@@ -107,14 +113,15 @@ public class GeneradorZonasCasino {
 		
 		return new Casino(100,3,jugador,casinoABuffer(listaZonas).toString());
 
-	}
+	}*/
 	
 
-	public  Casino generaCasino3(int numeroZonas,int numeroObjetivos){
+	public  Casino generaCasino3(int numeroZonas,int numeroObjetivos,GestorModelo gm){
 
 	    ArrayList<Zona> listaZonas=new ArrayList<Zona>();
 
 	    Puerta nuevaPuerta;
+	   
 			
 			//nuevaPuerta.setGestorModelo(gm);
 			
@@ -123,18 +130,28 @@ public class GeneradorZonasCasino {
 	    	listaZonas.add(new Zona(nuevaPuerta,i,TipoZona.OBJETIVO));// (planetaEstado.OBJETIVO,"P"+(i+1)));
 	    	
 	    }
-
+	    
+	    
+	    
+	    int juego=1;
+	    int estrategia=1;
 	     for (int i=1;i<numeroZonas+1;i++) { //+1 sera el planeta origen que luego se buscara para buscar el mas alejado de los planetas objetivos
-	    	 nuevaPuerta = new Puerta();
+	    	 nuevaPuerta = new Puerta(gm,juego,estrategia);   //a–ade juego y estrategia a la puerta
+	    	 nuevaPuerta.setApuesta(this.dameDificultadJuego(juego)*5);  //a–ade apuesta a la puerta
 	    	 listaZonas.add(new Zona(nuevaPuerta,i+numeroObjetivos,TipoZona.INTERMEDIO));
+	    	 listaZonas.get(listaZonas.size()-1).setDificultad(this.dameDificultadJuego(juego)); //a–ade dificultad local Y premio a la Zona
+	    	 /*if(juego==12){//vamos asignando juegos con estrategias
+	    		 juego=1;
+	    		 estrategia++;	    		
+	    	 }else juego++;*/
 	    		     
 	     }
 
 	     for (int i=0;i<numeroZonas+numeroObjetivos;i++) {
 
-	         Random distancia = new Random() ; //dificultad!!!
+	      //   Random distancia = new Random() ; //dificultad!!!
 	         Random indiceContiguo = new Random();
-	         Random numContiguos = new Random();
+	         //Random numContiguos = new Random();
 
 	         int np=4;//numContiguos.nextInt(2);
 
@@ -147,11 +164,9 @@ public class GeneradorZonasCasino {
 	             while ((indice==i) || (listaZonas.get(i).getZonasContiguas().contains(listaZonas.get(indice)))){
 	             indice= indiceContiguo.nextInt(numeroZonas+numeroObjetivos);
 	             }
-	             Integer dist = distancia.nextInt(9)+1;
 
-
-	             listaZonas.get(i).setZonaContigua(listaZonas.get(indice), dist);
-	             listaZonas.get(indice).setZonaContigua(listaZonas.get(i),dist);
+	             listaZonas.get(i).setZonaContigua(listaZonas.get(indice),listaZonas.get(indice).getDificultadLocal());
+	             listaZonas.get(indice).setZonaContigua(listaZonas.get(i),listaZonas.get(i).getDificultadLocal());
 
 
 
