@@ -51,6 +51,7 @@ public class Zona {
 	public Zona(Puerta puerta, int idZona, TipoZona tipoZona)
 	{
 		this.puerta=puerta;
+		this.puerta.setZona(this);
 		this.idZona=idZona;
 		this.tipoZona=tipoZona;
 
@@ -96,9 +97,8 @@ public class Zona {
 
 	public int menorDificultad() {
 		
-		
-		  Iterator it = this.zonasContiguas.iterator();
-		  int menorDificultad=1000000;
+		Iterator it = this.contiguos.keySet().iterator();//zonasContiguas.iterator();
+		int menorDificultad=1000000;
 		  if (it.hasNext())
 		  menorDificultad  = ((Zona) it.next()).getDificultad();
 		  Zona aux =null;
@@ -110,6 +110,8 @@ public class Zona {
 			  
 		  }
 		return menorDificultad;
+		
+		
 	}
 	
 	private int getDificultad() {
@@ -119,6 +121,7 @@ public class Zona {
 	
 	public void setDificultad(int dificultad){
 		this.dificultadLocal=dificultad;
+		this.premio=dificultad*10;
 	}
 
 	
@@ -156,7 +159,7 @@ public class Zona {
 	}
 	public String getContiguas2string2(){
 		String salida ="{";
-		Iterator it = this.contiguos.keySet().iterator()//zonasContiguas.iterator();
+		Iterator it = this.contiguos.keySet().iterator();//zonasContiguas.iterator();
 			
 			while (it.hasNext())
 			{
@@ -222,7 +225,7 @@ public class Zona {
 	
 	public void propagaDificultadArray(int estimacionObjetivo, Zona zonaAnterior, int saltos, int maxSaltos) {
 
-
+/*
         boolean propaga = false;
         int saltosloc=saltos;
 
@@ -253,7 +256,7 @@ public class Zona {
                     }
                 }
             }
-        }
+        }*/
     }
 
 

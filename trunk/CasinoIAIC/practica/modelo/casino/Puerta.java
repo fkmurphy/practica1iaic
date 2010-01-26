@@ -16,9 +16,12 @@ public class Puerta {
 	private int premio;
 	private Zona zona;
 	private GestorModelo gestor;
-	public Puerta()
+	public Puerta(GestorModelo gm,int idjuego,int estrategia)
 	{
-		this.apuesta  = new Random(100).nextInt();
+		this.gestor = gm;
+		this.juego=this.gestor.getGestor().dameMinijuego(idjuego);
+		this.idJuego=idjuego;
+		this.idEstrategia=estrategia;
 		
 	}
 	
@@ -31,8 +34,9 @@ public class Puerta {
 		return idJuego;
 	}
 
-	public void setJuego(Juego juego,int idJuego) {
-		this.juego = juego;
+	public void setJuego(int idJuego) {
+		
+		this.juego = this.gestor.getGestor().dameMinijuego(idJuego);
 		this.idJuego = idJuego;
 	}
 
@@ -44,9 +48,10 @@ public class Puerta {
 		this.idEstrategia = idEstrategia;
 	}
 
-	public Puerta(int apuesta)
-	{
-		this.apuesta=apuesta;
+
+
+	public Puerta() {
+		// TODO Auto-generated constructor stub
 	}
 
 	public int getApuesta() {
