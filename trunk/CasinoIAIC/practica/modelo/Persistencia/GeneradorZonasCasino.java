@@ -161,7 +161,7 @@ public class GeneradorZonasCasino {
 
 	             int indice=i;
 
-	             while ((indice==i) || (listaZonas.get(i).getZonasContiguas().contains(listaZonas.get(indice)))){
+	             while ((indice==i) || (listaZonas.get(i).contiene(listaZonas.get(indice)))){
 	             indice= indiceContiguo.nextInt(numeroZonas+numeroObjetivos);
 	             }
 
