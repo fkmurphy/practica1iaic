@@ -36,9 +36,12 @@ public class Zona {
 	public ArrayList<Zona> getZonasContiguas() {
 		return zonasContiguas;
 	}
+	
+	
 
 	public void setZonasContiguas(ArrayList<Zona> zonasContiguas) {
 		this.zonasContiguas = zonasContiguas;
+		
 	}
 	
 	public void setZonaContigua(Zona contiguo, Integer distancia) {
@@ -153,7 +156,7 @@ public class Zona {
 	}
 	public String getContiguas2string2(){
 		String salida ="{";
-		Iterator it = this.zonasContiguas.iterator();
+		Iterator it = this.contiguos.keySet().iterator()//zonasContiguas.iterator();
 			
 			while (it.hasNext())
 			{
@@ -195,8 +198,45 @@ public class Zona {
             if (this.tipoZona.equals(TipoZona.OBJETIVO)) {
                 this.dificultadPropagada = 0;
                 propaga = true;
-            } else if (contiguos.containsKey(zonaAnterior)) { // zonaAnterior --> null cuando es zonaObjetivo
-                Integer distanciaZonaAnterior = new Integer(contiguos.get(zonaAnterior));
+            } else if (contiguos.containsKey(zonaAnterior)) { // zonaAnterior --> null cuando es zonaObjetivo	
+                
+            	Integer distanciaZonaAnterior = new Integer(contiguos.get(zonaAnterior));
+                if (this.dificultadPropagada > estimacionObjetivo + distanciaZonaAnterior) {
+                    this.dificultadPropagada = estimacionObjetivo + distanciaZonaAnterior;
+                    propaga = true;
+                }
+
+            }
+
+            if (propaga) {
+                Iterator it = contiguos.keySet().iterator();
+                while (it.hasNext()) {
+                    Zona z = ((Zona) it.next());
+                    if (!z.equals(zonaAnterior)) {
+                        z.propagaDificultad(dificultadPropagada,this, saltosloc, maxSaltos);
+                    }
+                }
+            }
+        }
+    }
+	
+	public void propagaDificultadArray(int estimacionObjetivo, Zona zonaAnterior, int saltos, int maxSaltos) {
+
+
+        boolean propaga = false;
+        int saltosloc=saltos;
+
+        if (saltosloc <= maxSaltos) {
+
+            saltosloc++;
+
+            if (this.tipoZona.equals(TipoZona.OBJETIVO)) {
+                this.dificultadPropagada = 0;
+                propaga = true;
+   //         } else if (contiguos.containsKey(zonaAnterior)) { // cuando usabamos hastable
+            } else if (this.esContigua(zonaAnterior.getIdZona())) { // zonaAnterior --> null cuando es zonaObjetivo	
+                
+            	Integer distanciaZonaAnterior = new Integer(dameDificultadZona(zonaAnterior.getIdZona()));
                 if (this.dificultadPropagada > estimacionObjetivo + distanciaZonaAnterior) {
                     this.dificultadPropagada = estimacionObjetivo + distanciaZonaAnterior;
                     propaga = true;
@@ -216,8 +256,27 @@ public class Zona {
         }
     }
 
+
+
+	private boolean esContigua(int idZona2) {  //esto sobrara cuando pase todo a hastable
+		boolean encontrado =false;
+	
+		Iterator it = this.zonasContiguas.iterator();
+		 while (it.hasNext() || !encontrado) {
+             Zona z = ((Zona) it.next());
+             if (z.getIdZona()==idZona2) {
+            	 encontrado = true;
+             }
+		 }
+		return encontrado;
+	}
+
 	public Integer getDificultadLocal() {
 		return this.dificultadLocal;
+	}
+
+	public Hashtable<Zona,Integer> getZonasContiguasHash() {
+		return contiguos;
 	}
 	
 	
