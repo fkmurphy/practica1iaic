@@ -157,19 +157,19 @@ public class Zona {
 				
 		return info;
 	}
-	public String getContiguas2string2(){
+	public String getContiguas2string(){
 		String salida ="{";
 		Iterator it = this.contiguos.keySet().iterator();//zonasContiguas.iterator();
 			
 			while (it.hasNext())
 			{
 				Zona zona = (Zona) it.next();
-				salida+= "Z" + zona.getIdZona();
+				salida+= zona.getIdZona()+",";
 			}
 			salida+="}";
 		return salida;
 	}
-	public String getContiguas2string(){
+	public String getContiguas2string2(){
 //		String salida="{";
 //		Iterator it = this.contiguos.el
 //				  while (it.hasNext())
