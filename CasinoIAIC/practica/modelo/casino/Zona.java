@@ -202,16 +202,18 @@ public class Zona {
         if (saltosloc <= maxSaltos) {
 
             saltosloc++;
-            this.saltos=saltosloc;
+            
 
             if (this.tipoZona.equals(TipoZona.OBJETIVO)) {
                 this.dificultadPropagada = 0;
+                this.saltos=0;
                 propaga = true;
             } else if (contiguos.containsKey(zonaAnterior)) { // zonaAnterior --> null cuando es zonaObjetivo	
                 
             	Integer distanciaZonaAnterior = new Integer(contiguos.get(zonaAnterior));
                 if (this.dificultadPropagada > estimacionObjetivo + distanciaZonaAnterior) {
                     this.dificultadPropagada = estimacionObjetivo + distanciaZonaAnterior;
+                    this.saltos=saltosloc;
                     propaga = true;
                 }
 
