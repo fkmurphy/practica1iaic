@@ -1,11 +1,13 @@
-package practica.modelo.minijuegos.buscarletras;
+package practica.modelo.minijuegos.NB;
 
 import java.util.Iterator;
 
 
+
+
+
 import java.util.List;
 import java.util.Properties;
-
 
 
 import aima.search.framework.GraphSearch;
@@ -22,33 +24,33 @@ import aima.search.uninformed.DepthLimitedSearch;
 import aima.search.uninformed.IterativeDeepeningSearch;
 import aima.search.uninformed.UniformCostSearch;
 
+public class NBMain {
+	
+	static NB p = new NB();
 
-public class buscarLetrasMain {
-	static buscarLetras b = new buscarLetras();
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		
-		BLAStarDemo(); 
-		BLDLSDemo();
-		//BLUniformCostSearchDemo() ;
-		BLAStarManhattanDemo(); 
-		//BLIDLSDemo(); 
-		BLGreedyBestFirstDemo();
-		BLGreedyBestFirstManhattanDemo();
-		BLSimulatedAnnealingDemo(); 
-		BLDFS(); 
-		BLHillClimbing();
+		//NBAStarDemo(); 
+		NBDLSDemo();
+		//NBUniformCostSearchDemo() ;
+		NBAStarManhattanDemo(); 
+		NBIDLSDemo(); 
+		NBGreedyBestFirstDemo();
+		NBGreedyBestFirstManhattanDemo();
+		NBSimulatedAnnealingDemo();
+		//NBDFS(); 
+		NBHillClimbing();
+
 
 	}
 	
-	private static void BLDLSDemo() {
+	private static void NBDLSDemo() {
 
-		System.out.println("\nBL recursive DLS -->");
+		System.out.println("\nNB recursive DLS -->");
 		try {
-			Problem problem = new Problem(b, new Sucesores(), new Objetivo(),new Coste());
+			Problem problem = new Problem(p, new Sucesores(), new Objetivo(),new Coste());
 			Search search = new DepthLimitedSearch(9);
 			SearchAgent agent = new SearchAgent(problem, search);
 			
@@ -60,11 +62,11 @@ public class buscarLetrasMain {
 	}
 	
 
-	private static void BLIDLSDemo() {
+	private static void NBIDLSDemo() {
 		
-		System.out.println("\nBL Iterative IDLS -->");
+		System.out.println("\nNB Iterative IDLS -->");
 		try {
-			Problem problem = new Problem(b,new Sucesores(),new Objetivo(),new Coste());
+			Problem problem = new Problem(p,new Sucesores(),new Objetivo(),new Coste());
 			Search search = new IterativeDeepeningSearch();
 			SearchAgent agent = new SearchAgent(problem, search);
 			MostrarAcciones(agent.getActions());
@@ -76,11 +78,11 @@ public class buscarLetrasMain {
 	}
 
 
-    private static void BLUniformCostSearchDemo() {
+    private static void NBUniformCostSearchDemo() {
     	
-       	System.out.println("\nBL Uniform Cost Search -->");
+       	System.out.println("\nNB Uniform Cost Search -->");
 		try {
-			Problem problem = new Problem(b,new Sucesores(),new Objetivo(),new Coste());
+			Problem problem = new Problem(p,new Sucesores(),new Objetivo(),new Coste());
 			Search search = new UniformCostSearch(new TreeSearch());
 			SearchAgent agent = new SearchAgent(problem, search);
 			MostrarAcciones(agent.getActions());
@@ -90,11 +92,11 @@ public class buscarLetrasMain {
 		}
     }
 
-	private static void BLGreedyBestFirstDemo() {
+	private static void NBGreedyBestFirstDemo() {
 		System.out
-				.println("\nBL Greedy Best First Search (MisplacedTileHeursitic)-->");
+				.println("\nNB Greedy Best First Search (MisplacedTileHeursitic)-->");
 		try {
-			Problem problem = new Problem(b,new Sucesores(),new Objetivo(),new Heuristica());
+			Problem problem = new Problem(p,new Sucesores(),new Objetivo(),new Heur’stica());
 			Search search = new GreedyBestFirstSearch(new GraphSearch());
 			SearchAgent agent = new SearchAgent(problem, search);
 			MostrarAcciones(agent.getActions());
@@ -105,11 +107,11 @@ public class buscarLetrasMain {
 
 	}
 
-	private static void BLGreedyBestFirstManhattanDemo() {
+	private static void NBGreedyBestFirstManhattanDemo() {
 		System.out
-				.println("\nBL Greedy Best First Search (ManhattanHeursitic)-->");
+				.println("\nNB Greedy Best First Search (ManhattanHeursitic)-->");
 		try {
-			Problem problem = new Problem(b,new Sucesores(),new Objetivo(),new Coste(),new Heuristica());
+			Problem problem = new Problem(p,new Sucesores(),new Objetivo(),new Coste(), new Heur’stica());
 			Search search = new GreedyBestFirstSearch(new GraphSearch());
 			SearchAgent agent = new SearchAgent(problem, search);
 			MostrarAcciones(agent.getActions());
@@ -120,10 +122,10 @@ public class buscarLetrasMain {
 
 	}
 
-	private static void BLAStarDemo() {
-		System.out.println("\nBL A estrella ");
+	private static void NBAStarDemo() {
+		System.out.println("\nNB A estrella ");
 		try {
-			Problem problem = new Problem(b,new Sucesores(),new Objetivo(),new Coste(),new Heuristica());
+			Problem problem = new Problem(p,new Sucesores(),new Objetivo(),new Coste(),new Heur’stica());
 			Search search = new AStarSearch(new GraphSearch());
 			SearchAgent agent = new SearchAgent(problem, search);
 			MostrarAcciones(agent.getActions());
@@ -134,10 +136,10 @@ public class buscarLetrasMain {
 		}
 	}
 
-	private static void BLSimulatedAnnealingDemo() {
-		System.out.println("\nBL Simulated Annealing  Search -->");
+	private static void NBSimulatedAnnealingDemo() {
+		System.out.println("\nNB Simulated Annealing  Search -->");
 		try {
-			Problem problem = new Problem(b,new Sucesores(),new Objetivo(),new Heuristica());
+			Problem problem = new Problem(p,new Sucesores(),new Objetivo(),new Heur’stica());
 			SimulatedAnnealingSearch search = new SimulatedAnnealingSearch();
 			SearchAgent agent = new SearchAgent(problem, search);
 			MostrarAcciones(agent.getActions());
@@ -150,11 +152,11 @@ public class buscarLetrasMain {
 		}
 	}
 
-	private static void BLAStarManhattanDemo() {
+	private static void NBAStarManhattanDemo() {
 		System.out
-				.println("\nBL AStar Search (ManhattanHeursitic)-->");
+				.println("\nNB AStar Search (ManhattanHeursitic)-->");
 		try {
-			Problem problem = new Problem(b,new Sucesores(),new Objetivo(),new Heuristica());
+			Problem problem = new Problem(p,new Sucesores(),new Objetivo(),new Heur’stica());
 			Search search = new AStarSearch(new GraphSearch());
 			SearchAgent agent = new SearchAgent(problem, search);
 			MostrarAcciones(agent.getActions());
@@ -164,13 +166,12 @@ public class buscarLetrasMain {
 		}
 
 	}
-	
-	 private static void BLHillClimbing() {
+	 private static void NBHillClimbing() {
 	      
 	        System.out
-			.println("\n BLHill Climbing-->");
+			.println("\n NBHill Climbing-->");
 			try {
-				Problem problem = new Problem(b,new Sucesores(),new Objetivo(),new Coste(),new Heuristica());	                
+				Problem problem = new Problem(p,new Sucesores(),new Objetivo(),new Coste(),new Heur’stica());	                
 				HillClimbingSearch search = new HillClimbingSearch();
 				SearchAgent agent = new SearchAgent(problem, search);
 				MostrarAcciones(agent.getActions());
@@ -184,12 +185,12 @@ public class buscarLetrasMain {
 	      
 	    }
 	 
-	   private static void BLDFS() {
+	   private static void NBDFS() {
 		   System.out
-			.println("\n BLDepthFirstSearch-->");
+			.println("\n NBDepthFirstSearch-->");
 	         
 	        try {
-	            Problem problem = new Problem(b,new Sucesores(),new Objetivo(),new Coste()); 
+	            Problem problem = new Problem(p,new Sucesores(),new Objetivo(),new Coste()); 
 	            Search search = new DepthFirstSearch(new GraphSearch());
 	            SearchAgent agent = new SearchAgent(problem, search);
 	            MostrarAcciones(agent.getActions());
@@ -199,7 +200,6 @@ public class buscarLetrasMain {
 	        }
 	       
 	    }
-
 		private static void MostrarAcciones( List acciones){
 			for (int i = 0; i < acciones.size(); i++) {
 				String action = (String) acciones.get(i);
@@ -217,8 +217,6 @@ public class buscarLetrasMain {
 				System.out.println(key + " : " + property);
 			}
 		}
-	
-	
 	
 	
 	

@@ -13,11 +13,12 @@ public class Sucesores implements SuccessorFunction{
 		int operadores;
 		buscarLetras b =  (buscarLetras)state;
 		List<Successor> successors = new ArrayList<Successor>();
-		/* Tenemos 6 posibles operadores que debemos almacenar*/
+	
 		for (operadores = 0; operadores <=3; operadores++){
 			
 			
 	           buscarLetras nuevoEstado=b.applyOperator(operadores);
+	           if (b.opAplicados())
 	           successors.add(new Successor(nuevoEstado.toString(),nuevoEstado));
 	          
 	    } 

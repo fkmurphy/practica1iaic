@@ -1,6 +1,7 @@
-package practica.modelo.minijuegos.Puzzle;
+package practica.modelo.minijuegos.Laberinto;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 
@@ -12,14 +13,14 @@ public class Sucesores implements SuccessorFunction{
 
 	public List getSuccessors(Object state) {
 		int operadores;
-		Puzzle g =  (Puzzle)state;
+		Laberinto g = (Laberinto)state;
 		List<Successor> successors = new ArrayList<Successor>();
-		/* Tenemos 6 posibles operadores que debemos almacenar*/
+		
 		for (operadores = 0; operadores <=3; operadores++){
 			
 			
-	           Puzzle nuevoEstado=g.Operadores(operadores);
-	           if (g.opAplicado())
+	           Laberinto nuevoEstado=g.Operadores(operadores);
+	           if (g.opAplicados())
 	           successors.add(new Successor(nuevoEstado.toString(),nuevoEstado));
 	          
 	    } 

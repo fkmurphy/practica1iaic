@@ -2,10 +2,10 @@ package practica.modelo.minijuegos.Mono;
 
 import java.util.ArrayList;
 
+
 import java.util.List;
 
-import practica.modelo.minijuegos.Mono.*;
-import practica.modelo.minijuegos.Garrafas.Garrafas;
+
 
 import aima.search.framework.*;
 

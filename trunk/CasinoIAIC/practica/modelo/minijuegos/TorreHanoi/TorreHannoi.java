@@ -6,12 +6,13 @@ package practica.modelo.minijuegos.TorreHanoi;
 
 public class TorreHannoi {
 	
-	    int p1 [];
-	    int cima1;
-	    int p2 [];
-	    int cima2;
-	    int cima3;
-	    int p3 [];
+	private   int p1 [];
+	private   int cima1;
+	private    int p2 [];
+	private   int cima2;
+	private  int cima3;
+	private  int p3 [];
+	private boolean opAplicado;
 	
 	   
 	   
@@ -138,49 +139,67 @@ public class TorreHannoi {
 	    }
 	
   public TorreHannoi  Operadores(int operador){
-		 
+		 this.opAplicado=false;
 		     TorreHannoi nextState = new TorreHannoi(this.cima1,this.cima2,this.cima3,this.p1,this.p2,this.p3);
 		     if((operador==0)&&(((this.cima1 != -1) &&(this.cima2 != -1) &&(p1[this.cima1]<p2[this.cima2])) || (this.cima1 != -1) &&(this.cima2 == -1))){
                  nextState.cima2 = this.cima2+1;
                  nextState.p2[nextState.cima2] = p1[this.cima1];
                  nextState.cima1 = this.cima1-1;
+                 this.opAplicado=true;
              }
 		     if((operador==1)&&(((this.cima1 != -1) &&(this.cima3 != -1)&&(p1[this.cima1]<p3[this.cima3]))|| (this.cima1 != -1) &&(this.cima3 == -1))){
                  nextState.cima3 = this.cima3+1;
                  nextState.p3[nextState.cima3] = p1[this.cima1];
                  nextState.cima1 = this.cima1-1;
+                 this.opAplicado=true;
              }
 		     if((operador==2)&&(((this.cima2 != -1) &&(this.cima1 != -1)&&(p1[this.cima2]<p1[this.cima1]))|| (this.cima2 != -1) &&(this.cima1 == -1))){
                  nextState.cima1 = this.cima1+1;
                  nextState.p1[nextState.cima1] = p2[this.cima2];
                  nextState.cima2 = this.cima2-1;
+                 this.opAplicado=true;
              }
 		     if((operador==3)&&(((this.cima2 != -1) &&(this.cima3 != -1)&&(p2[this.cima2]<p3[this.cima3]))|| (this.cima2 != -1) &&(this.cima3 == -1))){
                  nextState.cima3 = this.cima3+1;
                  nextState.p3[nextState.cima3] = p2[this.cima2];
                  nextState.cima2 = this.cima2-1;
+                 this.opAplicado=true;
              }
 		     if((operador==4)&& (((this.cima3 != -1) &&(this.cima2 != -1)&&(p3[this.cima3]<p2[this.cima2]))|| (this.cima3 != -1) &&(this.cima2 == -1))){
                  nextState.cima1 = this.cima1+1;
                  nextState.p1[nextState.cima1] = p3[this.cima3];
                  nextState.cima3 = this.cima3-1;
+                 this.opAplicado=true;
              }
 		     if((operador==5)&&(((this.cima3 != -1) &&(this.cima1 != -1)&&(p3[this.cima3]<p1[this.cima1]))|| (this.cima3 != -1) &&(this.cima1 == -1))){
                 nextState.cima2 = this.cima2+1;
                  nextState.p2[nextState.cima2] = p3[this.cima3];
                  nextState.cima3 = this.cima3-1;
+                 this.opAplicado=true;
              }
     return nextState;
 	       
 	    }
 	    
+	public boolean opAplicado(){
+		return this.opAplicado;
+		
+	}
 	
+	public boolean isvalido() {
+		boolean valido= true;
+		if( (this.getCima1()<-1)||(this.getCima1()>2) ) valido=false;
+		if ((this.getCima2()<-1)||(this.getCima2()>2)) valido=false;
+			if ((this.getCima3()<-1)||(this.getCima3()>3)) valido=false;
+			return valido;
+		
+	}
 	      
 
 	
 
 	      public boolean esObjetivo(){
-	          return (cima3 == 3);
+	          return (this.cima3 == 3);
 	      }
 	      
 	      public String toString(){
@@ -188,7 +207,7 @@ public class TorreHannoi {
 	      }
 	      
 	      public float hueristica(){
-	          return 3-cima3;
+	          return (3-this.cima3);
 	      }
 	      
 	   
