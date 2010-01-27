@@ -61,7 +61,7 @@ public class Jugador {
 	public boolean juegaPrueba(Zona zona)
 	{
 		int dinero=0;
-		 dinero= zona.getPuerta().ejecutaJuego();
+		 dinero = zona.getPuerta().ejecutaJuego();
 		if (dinero ==0)
 			return false;
 		else return true;

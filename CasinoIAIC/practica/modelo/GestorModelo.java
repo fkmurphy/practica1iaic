@@ -91,7 +91,7 @@ public class GestorModelo {
 
 	public void generaCasinoAleatorio() {
 	
-		casino = this.generador.generaCasino3(97,3, this);
+		casino = this.generador.generaCasino3(96,3, this);
 		//casino = this.generador.generaCasino3(100, 3); 
 		this.interfaz.mostrarCasino(casino.getCasinoString());
 	}
@@ -144,7 +144,7 @@ public class GestorModelo {
 }
 
 	public Casino generaCasinoAleatoriodePrueba() {
-		return this.generador.generaCasino3(97,3,this);
+		return this.generador.generaCasino3(96,3,this);
 	 
 	}
 }

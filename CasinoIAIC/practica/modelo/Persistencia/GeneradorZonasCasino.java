@@ -157,18 +157,19 @@ public class GeneradorZonasCasino {
 
 
 
-	         for (int j=0;j<=np;j++){
-
+	         //for (int j=0;j<=np;j++){
+	         int j=0;
+	        while((j<=np) &&(listaZonas.get(i).getNumContiguos()<5)){
 	             int indice=i;
 
 	             while ((indice==i) || (listaZonas.get(i).contiene(listaZonas.get(indice)))){
 	             indice= indiceContiguo.nextInt(numeroZonas+numeroObjetivos);
 	             }
-
-	             listaZonas.get(i).setZonaContigua(listaZonas.get(indice),listaZonas.get(indice).getDificultadLocal());
-	             listaZonas.get(indice).setZonaContigua(listaZonas.get(i),listaZonas.get(i).getDificultadLocal());
-
-
+	             if((listaZonas.get(i).getNumContiguos()<4)&&(listaZonas.get(indice).getNumContiguos()<4)){
+	            	 listaZonas.get(i).setZonaContigua(listaZonas.get(indice),listaZonas.get(indice).getDificultadLocal());
+	            	 listaZonas.get(indice).setZonaContigua(listaZonas.get(i),listaZonas.get(i).getDificultadLocal());
+	             }
+	             j++;
 
 	         }
 
