@@ -16,7 +16,7 @@ public class Zona {
 	private TipoZona tipoZona;
 	private Hashtable<Zona,Integer> contiguos;
 	private int dificultadLocal;
-	private int dificultadGlobal;
+	
 	private int premio;
 
 
@@ -105,24 +105,25 @@ public class Zona {
 		Iterator it = this.contiguos.keySet().iterator();//zonasContiguas.iterator();
 		int menorDificultad=1000000;
 		  if (it.hasNext())
-		  menorDificultad  = ((Zona) it.next()).getDificultad();
+		  menorDificultad  = ((Zona) it.next()).getDificultadPropagada();
 		  Zona aux =null;
 		  while (it.hasNext())
 		  {
 			  aux = (Zona) it.next();
-			  if (menorDificultad > aux.getDificultad())
-				  menorDificultad= aux.getDificultad();
+			  if (menorDificultad > aux.getDificultadPropagada())
+				  menorDificultad= aux.getDificultadPropagada();
 			  
 		  }
+		  
+		  
+		  if (menorDificultad==0)
+			  menorDificultad=0;
 		return menorDificultad;
 		
 		
 	}
 	
-	private int getDificultad() {
-		
-		return this.dificultadLocal;
-	}
+	
 	
 	public void setDificultad(int dificultad){
 		this.dificultadLocal=dificultad;
