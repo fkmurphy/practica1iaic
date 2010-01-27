@@ -287,7 +287,9 @@ public class Zona {
 		return this.contiguos.keySet().contains(zona);
 	}
 	
-	
+	public int getNumContiguos(){
+		return this.contiguos.size();
+	}
 	
 	
 }
