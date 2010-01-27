@@ -1,5 +1,7 @@
 package practica.modelo.Persistencia;
 
+import giny.model.RootGraph;
+
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Iterator;
@@ -140,10 +142,10 @@ public class GeneradorZonasCasino {
 	    	 nuevaPuerta.setApuesta(this.dameDificultadJuego(juego)*5);  //a–ade apuesta a la puerta
 	    	 listaZonas.add(new Zona(nuevaPuerta,i+numeroObjetivos,TipoZona.INTERMEDIO));
 	    	 listaZonas.get(listaZonas.size()-1).setDificultad(this.dameDificultadJuego(juego)); //a–ade dificultad local Y premio a la Zona
-	    	 /*if(juego==12){//vamos asignando juegos con estrategias
+	    	 if(juego==12){//vamos asignando juegos con estrategias
 	    		 juego=1;
 	    		 estrategia++;	    		
-	    	 }else juego++;*/
+	    	 }else juego++;
 	    		     
 	     }
 
@@ -159,8 +161,8 @@ public class GeneradorZonasCasino {
 
 	         //for (int j=0;j<=np;j++){
 	         int j=0;
-	        while((j<=np) &&(listaZonas.get(i).getNumContiguos()<5)){
-	             int indice=i;
+             int indice=i;
+	        while(j<=np){
 
 	             while ((indice==i) || (listaZonas.get(i).contiene(listaZonas.get(indice)))){
 	             indice= indiceContiguo.nextInt(numeroZonas+numeroObjetivos);
@@ -171,7 +173,12 @@ public class GeneradorZonasCasino {
 	             }
 	             j++;
 
+	         }if (listaZonas.get(i).getNumContiguos()<4){
+	        	 indice = (i+5)%(numeroZonas+numeroObjetivos);
+	        	 listaZonas.get(i).setZonaContigua(listaZonas.get(indice),listaZonas.get(indice).getDificultadLocal());
+            	 listaZonas.get(indice).setZonaContigua(listaZonas.get(i),listaZonas.get(i).getDificultadLocal());
 	         }
+	        	 
 
 	     }
 
@@ -216,10 +223,10 @@ public class GeneradorZonasCasino {
 	                          +listaZonas.get(i).getTipoZona()+" "
 	                          +listaZonas.get(i).getContiguas2string()+" "
 	                          +"EstimDist: "
-	                          +listaZonas.get(i).getDificultadPropagada()+"\n");
+	                          +listaZonas.get(i).getDificultadPropagada()+" "+listaZonas.get(i).getPuerta().getIdJuego()+" "+listaZonas.get(i).getPuerta().getIdEstrategia()+"\n");
 
 	          }
-
+	     
 	      return new Casino(zonaOrigen,jugador,numeroZonas,numeroObjetivos,printCasinoMiniJuego.toString());
 	     
 	    }
@@ -229,6 +236,13 @@ public class GeneradorZonasCasino {
 		
 	
 	
+
+
+
+
+
+
+
 	public StringBuffer casinoABuffer(Zona[] listaZonas)
 	{
 		StringBuffer bufer = new StringBuffer();
