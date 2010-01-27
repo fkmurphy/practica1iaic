@@ -127,9 +127,15 @@ public class GeneradorZonasCasino {
 			//nuevaPuerta.setGestorModelo(gm);
 			
 	    for (int i=0;i<numeroObjetivos;i++) {
-	    	nuevaPuerta = new Puerta();
+	    	/*nuevaPuerta = new Puerta();
 	    	listaZonas.add(new Zona(nuevaPuerta,i,TipoZona.OBJETIVO));// (planetaEstado.OBJETIVO,"P"+(i+1)));
 	    	listaZonas.get(listaZonas.size()-1).setDificultad(1);
+	    	*/
+	    	nuevaPuerta = new Puerta(gm,1,1);   //a–ade juego y estrategia a la puerta
+	    	 nuevaPuerta.setApuesta(0);  //a–ade apuesta a la puerta
+	    	 listaZonas.add(new Zona(nuevaPuerta,i,TipoZona.OBJETIVO));
+	    	 listaZonas.get(listaZonas.size()-1).setDificultad(1);
+	    	
 	    }
 	    
 	    
@@ -141,10 +147,10 @@ public class GeneradorZonasCasino {
 	    	 nuevaPuerta.setApuesta(this.dameDificultadJuego(juego)*5);  //a–ade apuesta a la puerta
 	    	 listaZonas.add(new Zona(nuevaPuerta,i+numeroObjetivos,TipoZona.INTERMEDIO));
 	    	 listaZonas.get(listaZonas.size()-1).setDificultad(this.dameDificultadJuego(juego)); //a–ade dificultad local Y premio a la Zona
-	    	/* if(juego==12){//vamos asignando juegos con estrategias
+	    	 if(juego==12){//vamos asignando juegos con estrategias
 	    		 juego=1;
 	    		 estrategia++;	    		
-	    	 }else juego++;*/
+	    	 }else juego++;
 	    		     
 	     }
 
