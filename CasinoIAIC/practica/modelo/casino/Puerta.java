@@ -51,6 +51,7 @@ public class Puerta {
 
 
 	public Puerta() {
+		juego=null;
 		// TODO Auto-generated constructor stub
 	}
 
@@ -64,6 +65,9 @@ public class Puerta {
 
 	public int ejecutaJuego()
 	{
+		if(this.juego==null){
+			return 0;
+		}
 		ResultadoPrueba resultado= this.juego.juega(this.getIdEstrategia());
 		this.gestor.getInterfaz().mostrarMinijuego(resultado.getPrintBatalla());
 		if (resultado.getResultado())
