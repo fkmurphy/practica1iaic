@@ -32,6 +32,7 @@ public class Zona {
     
 	//private ArrayList<Zona> zonasContiguas=new ArrayList<Zona>();
 	private GestorModelo gestorModelo;
+	private int saltos;
 	
 /*	public ArrayList<Zona> getZonasContiguas() {
 		return zonasContiguas;
@@ -44,6 +45,10 @@ public class Zona {
 		
 	}*/
 	
+	public int getSaltos() {
+		return saltos;
+	}
+
 	public void setZonaContigua(Zona contiguo, Integer distancia) {
         this.contiguos.put(contiguo, distancia);
     }
@@ -197,6 +202,7 @@ public class Zona {
         if (saltosloc <= maxSaltos) {
 
             saltosloc++;
+            this.saltos=saltosloc;
 
             if (this.tipoZona.equals(TipoZona.OBJETIVO)) {
                 this.dificultadPropagada = 0;

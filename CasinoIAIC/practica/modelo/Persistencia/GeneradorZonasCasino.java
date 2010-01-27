@@ -252,8 +252,8 @@ public class GeneradorZonasCasino {
 		        while (it.hasNext()){
 		           Zona p= ((Zona)it.next());
 
-		           if (p.getDificultadPropagada()>maxDistancia)
-		            {  maxDistancia=p.getDificultadPropagada();
+		           if ((p.getSaltos()>maxDistancia)&&(p.getTipoZona().equals(TipoZona.INTERMEDIO)))//.getDificultadPropagada()>maxDistancia)
+		            {  maxDistancia=p.getSaltos();
 		               indice=i;
 		            }
 
@@ -262,7 +262,7 @@ public class GeneradorZonasCasino {
 
 		        listaZonas.get(indice).setTipoZona(TipoZona.ORIGEN);
 
-		        System.out.print(listaZonas.get(indice).getDificultadPropagada()+"\n");
+		        System.out.print(listaZonas.get(indice).getSaltos()+"\n");
 
 
 		        return listaZonas.get(indice);
