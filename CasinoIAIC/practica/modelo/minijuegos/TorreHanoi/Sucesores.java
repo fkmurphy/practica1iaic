@@ -18,6 +18,7 @@ public class Sucesores implements SuccessorFunction{
 		List<Successor> successors = new ArrayList<Successor>();
 		for (operadores = 0; operadores <=5; operadores++){
 	           TorreHannoi nuevoEstado=m.Operadores(operadores);
+	           if (m.opAplicado())
 	           successors.add(new Successor(nuevoEstado.toString(),nuevoEstado));
 	          
 	    } 

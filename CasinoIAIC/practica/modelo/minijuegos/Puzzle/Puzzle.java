@@ -1,11 +1,5 @@
 package practica.modelo.minijuegos.Puzzle;
 
-import aima.search.framework.GoalTest;
-import aima.search.framework.HeuristicFunction;
-import aima.search.framework.StepCostFunction;
-import aima.search.framework.SuccessorFunction;
-import practica.modelo.minijuegos.Juego;
-
 
 public class Puzzle {
 
@@ -24,6 +18,7 @@ public class Puzzle {
      * Tablero que representa el puzzle
      */
     private int [][] tablero;
+    private boolean opAplicado;
 
     /**
      * Genera un nodo de ocho puzzle con el estado del juego en ese momento
@@ -66,7 +61,7 @@ public class Puzzle {
     
     
     public Puzzle Operadores(int operadores){
-    	
+    	this.opAplicado= false;
     	int miX = this.x;
         int miY = this.y;
         Puzzle nuevoEstado = 
@@ -77,6 +72,7 @@ public class Puzzle {
                nuevoEstado.tablero[miX-1][miY] = 0;
                nuevoEstado.tablero[miX][miY] = temp;
                nuevoEstado.x = miX - 1;
+               this.opAplicado= true;
            
        }
        //Mover hueco hacia abajo
@@ -84,8 +80,8 @@ public class Puzzle {
                int temp = nuevoEstado.tablero[miX+1][miY];
                nuevoEstado.tablero[miX+1][miY] = 0;
                nuevoEstado.tablero[miX][miY] = temp;
-               nuevoEstado.x = miX + 1;;
-              
+               nuevoEstado.x = miX + 1;
+               this.opAplicado= true;              
        }
        //Mover hueco hacia la izquierda
        if (operadores == 2 && miY>0){
@@ -93,6 +89,7 @@ public class Puzzle {
                nuevoEstado.tablero[miX][miY-1] = 0;
                nuevoEstado.tablero[miX][miY] = temp;
                nuevoEstado.y = miY - 1;
+               this.opAplicado= true;
                
        }
        //Mover hueco hacia la derecha
@@ -101,6 +98,7 @@ public class Puzzle {
                nuevoEstado.tablero[miX][miY+1] = 0;
                nuevoEstado.tablero[miX][miY] = temp;
                nuevoEstado.y = miY + 1;
+               this.opAplicado= true;
           
        }
        
@@ -109,7 +107,9 @@ public class Puzzle {
      return nuevoEstado;
     
     }
-   
+   public boolean opAplicado(){
+	   return this.opAplicado;
+   }
      
      /**
       * Genera la heuristica para este problema, cuenta fichas descolocadas

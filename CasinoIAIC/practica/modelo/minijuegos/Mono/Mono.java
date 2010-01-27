@@ -1,5 +1,7 @@
 package practica.modelo.minijuegos.Mono;
 
+
+
 public class Mono {
     
 	private int pos;
@@ -14,6 +16,49 @@ public class Mono {
 	    caja=2;
 	    platano=false;
 	    
+	}
+	
+	public boolean equals( Object arg ) {
+	    // Se comprueba que el argumento es del tipo adecuado y
+	    // que no es nulo. Si lo anterior se cumple se realiza
+	    // la comprobacion de equivalencia de los datos.
+	    // Observese que se ha empleado el operador instanceof
+		boolean ok;
+	    if( (arg != null) && (arg instanceof Mono) ) {
+	        // Hacemos un moldeado del Object general a tipo java511
+	        Mono temp = (Mono)arg;
+
+	        // Se realiza la comparacion y se devuelve el resultado
+	        ok=( this.getPos() == temp.getPos() )
+	        &&(this.getCaja()==temp.getCaja())
+	        &&(this.dameSubido()==temp.dameSubido())
+	        &&(this.isPlatano()==temp.isPlatano());
+	        }
+	    else {
+	        // No es del tipo esperado
+	        ok=( false );
+	        }
+	  
+	    return ok;
+	    
+	}
+	
+	public int hashCode() {
+	    int result = 17;
+	    int position = this.getCaja();
+	    result = 37 * result + position;
+	    position = this.getPos();
+	    result = 37 * result + position;
+	  
+	    if (this.isPlatano()) position = 1;
+	    else position=0;
+	    result = 37 * result + position;
+	    
+	    if (this.dameSubido()) position = 1;
+	    else position=0;    
+	    result = 37 * result + position;
+	    
+	    return result;
 	}
 	
 	public Mono(int pos, int caja, boolean sobrecaja, boolean platano){

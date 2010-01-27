@@ -30,9 +30,9 @@ public class TorreHannoiMain {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		//HannoiAStarDemo(); 
+		HannoiAStarDemo(); 
 		HannoiDLSDemo();
-		//HannoiUniformCostSearchDemo() ;
+		HannoiUniformCostSearchDemo() ;
 		HannoiAStarManhattanDemo(); 
 		HannoiIDLSDemo(); 
 		//HannoiGreedyBestFirstDemo();
@@ -191,6 +191,7 @@ public class TorreHannoiMain {
 		            Problem problem = new Problem(t,new Sucesores(),new Objetivo(),new Coste()); 
 		            Search search = new DepthFirstSearch(new GraphSearch());
 		            SearchAgent agent = new SearchAgent(problem, search);
+		            
 		            MostrarAcciones(agent.getActions());
 		            MostrarInstrucciones(agent.getInstrumentation());
 		        } catch (Exception e) {

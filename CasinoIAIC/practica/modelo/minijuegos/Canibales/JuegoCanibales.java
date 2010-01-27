@@ -10,6 +10,5 @@ public class JuegoCanibales extends Juego{
 		super("JuegoCanibales", new Canibales(), new Sucesores(), new Objetivo(), new Coste(), new Heuristica());
 	}
 	
-
-
+	
 }

@@ -14,6 +14,7 @@ public class buscarLetras {
 	    char uf;
 	    char df;
 	    boolean iz;
+	    boolean opAplicados;
 	   
 	
 	  public buscarLetras(){
@@ -79,32 +80,38 @@ public class buscarLetras {
 	    
 	    
 	    public buscarLetras applyOperator(int operadores){
-	    	
+	    	this.opAplicados= false;
 	       buscarLetras nextState = new buscarLetras(this.uno,this.dos,this.iz,this.uf,this.df);
 	       if((operadores==0)&&(this.iz)){
 	          if (this.uno!='z') nextState.uno=(char)((int)this.uno+1);
 	          else nextState.uno='a';
 	          nextState.iz=!(this.iz);
+	          this.opAplicados= true;
 	       }
 	       if((operadores==1)&&(this.iz)){
 	          if (this.uno!='a') nextState.uno=(char)((int)this.uno-1);
 	          else nextState.uno='z';
 	          nextState.iz=!(this.iz);
+	          this.opAplicados= true;
 	       }
 	       if((operadores==2)&&(!this.iz)){
 	          if (this.dos!='z') nextState.dos=(char)((int)this.dos+1);
 	          else nextState.dos='a';
 	          nextState.iz=!(this.iz);
+	          this.opAplicados= true;
 	       }
 	       if((operadores==3)&&(!this.iz)){
 	          if (this.dos!='a') nextState.dos=(char)((int)this.dos-1);
 	          else nextState.dos='z';
 	          nextState.iz=!(this.iz);
+	          this.opAplicados= true;
 	       }
 	         return nextState;
 	      }
 	    
-	     
+	    public boolean opAplicados(){
+	    	return this.opAplicados;
+	    }
 	     
 	   public int getCoste(){
 		   return 1;
