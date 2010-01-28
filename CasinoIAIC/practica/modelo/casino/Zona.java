@@ -59,6 +59,7 @@ public class Zona {
 		this.puerta.setZona(this);
 		this.idZona=idZona;
 		this.tipoZona=tipoZona;
+		this.saltos=Integer.MAX_VALUE;
 
         this.contiguos=new Hashtable<Zona,Integer>();
         if (this.tipoZona.equals(tipoZona.OBJETIVO))
@@ -82,6 +83,7 @@ public class Zona {
 	{
 
         contiguos=new Hashtable<Zona,Integer>();
+        
 	}
 
 	public Puerta getPuerta() {
@@ -199,7 +201,6 @@ public class Zona {
 
         boolean propaga = false;
         int saltosloc=saltos;
-
         if (saltosloc <= maxSaltos) {
 
             saltosloc++;
@@ -214,7 +215,8 @@ public class Zona {
             	Integer distanciaZonaAnterior = new Integer(contiguos.get(zonaAnterior));
                 if (this.dificultadPropagada > estimacionObjetivo + distanciaZonaAnterior) {
                     this.dificultadPropagada = estimacionObjetivo + distanciaZonaAnterior;
-                    this.saltos=saltosloc;
+                    if(saltosloc<this.saltos)
+                    	this.saltos=saltosloc;
                     propaga = true;
                 }
 
