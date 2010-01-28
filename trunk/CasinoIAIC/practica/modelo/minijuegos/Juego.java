@@ -102,13 +102,13 @@ public abstract class Juego {
 	   	{
 	   		StringBuffer bufer = new StringBuffer();
 	   		 bufer.append(AStar());
-//	   		 bufer.append(GreedyBestFirst());
-//	   		 bufer.append(DLS());
-//	   		 bufer.append(HillClimbing());
-//	   		 bufer.append(SimulatedAnnealing());
-//	   		 bufer.append(UniformCost());
-//	   		 bufer.append(IDLS());
-//	   		 bufer.append(BFS());
+	   		 bufer.append(GreedyBestFirst());
+	   		 bufer.append(DLS());
+	   		 bufer.append(HillClimbing());
+	   		 bufer.append(SimulatedAnnealing());
+	   		 bufer.append(AStarManhattanDemo());
+	   		 bufer.append(IDLS());
+	   		 bufer.append(GreedyBestFirstManhattanDemo());
 //	   		 bufer.append(DFS());
 	   		
 	   	 return bufer;
