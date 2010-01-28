@@ -6,6 +6,10 @@ import java.util.Properties;
 import java.util.Random;
 
 import practica.modelo.casino.ResultadoPrueba;
+import practica.modelo.minijuegos.Palillos.Coste;
+import practica.modelo.minijuegos.Palillos.Heur’stica;
+import practica.modelo.minijuegos.Palillos.Objetivo;
+import practica.modelo.minijuegos.Palillos.Sucesores;
 
 import aima.search.framework.*;
 
@@ -74,17 +78,19 @@ public abstract class Juego {
 	                r = SimulatedAnnealing();
 	                break;
 	            case 6:
-	                r = UniformCost();
+	                r = AStarManhattanDemo();
 	                break;
 	            case 7 :
 	                r = IDLS();
 	                break;
 	            case 8 :
-	                r = BFS();
+	                r = GreedyBestFirstManhattanDemo();
 	                break;
 	            case 9 :
-	                r = DFS();
+	                r = GreedyBestFirst();
 	                break;
+	                
+	                //
 
 	        }
 	        
@@ -109,6 +115,38 @@ public abstract class Juego {
 	   	 
 	   		
 	   	}
+	   	
+	   	
+	   	private String AStarManhattanDemo() {
+	   	 String resultado = nombre+" :\n AStar Search (ManhattanHeursitic)-->\n";
+	   		
+			try {
+				Problem problem = new Problem(EstadoInicial,Sucesores, TestObjetivo,Heuristica);
+				Search search = new AStarSearch(new GraphSearch());
+				SearchAgent agent = new SearchAgent(problem, search);
+				resultado += printActions(agent.getActions());
+	            resultado+= printInstrumentation(agent.getInstrumentation());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return resultado;
+
+		}
+	   	private  String GreedyBestFirstManhattanDemo() {
+			
+			 String resultado = nombre+" :\n Greedy Best First Search (ManhattanHeursitic)-->\n";
+			try {
+				Problem problem = new Problem(EstadoInicial,Sucesores,
+	                    TestObjetivo,Coste, Heuristica);
+				Search search = new GreedyBestFirstSearch(new GraphSearch());
+				SearchAgent agent = new SearchAgent(problem, search);
+				resultado += printActions(agent.getActions());
+	            resultado+= printInstrumentation(agent.getInstrumentation());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return resultado;
+		}
 
 
 	    private String DLS() {
@@ -211,7 +249,7 @@ public abstract class Juego {
 	        String resultado = nombre+"\n Greedy Best First Search (Heursitic)-->\n";
 	        try {
 	            Problem problem = new Problem(EstadoInicial,Sucesores,
-	                    TestObjetivo,Coste,Heuristica);
+	                    TestObjetivo,Heuristica);
 	            Search search = new GreedyBestFirstSearch(new GraphSearch());
 	            SearchAgent agent = new SearchAgent(problem, search);
 	            resultado += printActions(agent.getActions());

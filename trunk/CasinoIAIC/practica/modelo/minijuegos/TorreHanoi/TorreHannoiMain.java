@@ -35,8 +35,8 @@ public class TorreHannoiMain {
 		HannoiUniformCostSearchDemo() ;
 		HannoiAStarManhattanDemo(); 
 		HannoiIDLSDemo(); 
-		//HannoiGreedyBestFirstDemo();
-		//HannoiGreedyBestFirstManhattanDemo();
+		HannoiGreedyBestFirstDemo();
+		HannoiGreedyBestFirstManhattanDemo();
 		HannoiSimulatedAnnealingDemo(); 
 		//HannoiDFS(); 
 		HannoiHillClimbing();
