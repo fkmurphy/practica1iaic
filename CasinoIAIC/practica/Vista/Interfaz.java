@@ -249,8 +249,9 @@ import practica.modelo.casino.Casino;
 	    }
 
 	    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {
-	        
-	
+	    	JFileChooser chooser= new JFileChooser();
+	    	if(chooser.showOpenDialog(this)==JFileChooser.APPROVE_OPTION)
+		          this.miControlador.cargardeFichero(chooser.getSelectedFile().getName());
 	    }
 
 	    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {
