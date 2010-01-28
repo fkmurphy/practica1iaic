@@ -178,16 +178,18 @@ public class Zona {
 		return salida;
 	}
 	public String getContiguas2string2(){
-//		String salida="{";
-//		Iterator it = this.contiguos.el
-//				  while (it.hasNext())
-//		  {
-//			  Zona zona= (Zona) it.next();
-//			  salida+= "Z"+zona.getIdZona()+",";
-//		  }
-//		  salida+="}";
-//		
-		return this.contiguos.toString();
+		String salida ="";
+	Iterator it = this.contiguos.keySet().iterator();//zonasContiguas.iterator();
+	int cont=0;
+	while (it.hasNext())
+	{	cont++;
+		Zona zona = (Zona) it.next();
+		salida+= zona.getIdZona()+",";
+	}
+	for (int i=cont;i<10;i++){
+		salida+=",";
+	}
+return salida;
 		  
 	}
 
