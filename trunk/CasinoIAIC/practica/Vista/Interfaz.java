@@ -172,7 +172,7 @@ import practica.modelo.casino.Casino;
 	        });
 	        jMenu3.add(jMenuItem11);
 
-	        jMenuItem12.setText("Letras");
+	        jMenuItem12.setText("Laberinto");
 	        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
 	            public void actionPerformed(java.awt.event.ActionEvent evt) {
 	                jMenuItem12ActionPerformed(evt);
@@ -196,7 +196,7 @@ import practica.modelo.casino.Casino;
 	        });
 	        jMenu3.add(jMenuItem14);
 
-	        jMenuItem15.setText("BanderaHolandesa");
+	        jMenuItem15.setText("Mochila");
 	        jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
 	            public void actionPerformed(java.awt.event.ActionEvent evt) {
 	                jMenuItem15ActionPerformed(evt);
@@ -332,7 +332,7 @@ import practica.modelo.casino.Casino;
 	    }
 
 	    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {
-	            System.out.println("Letras");
+	            System.out.println("Laberinto");
 	            this.miControlador.ejecutarJuego(7);
 	    }
 
@@ -347,7 +347,7 @@ import practica.modelo.casino.Casino;
 	    }
 
 	    private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {
-	        System.out.println("BanderaHolandesa");
+	        System.out.println("Mochila");
 	        this.miControlador.ejecutarJuego(6);
 	    }
 	    
