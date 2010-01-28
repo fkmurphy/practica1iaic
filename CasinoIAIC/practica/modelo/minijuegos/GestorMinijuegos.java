@@ -4,6 +4,7 @@ import practica.Controlador.Controlador;
 
 import practica.modelo.minijuegos.Canibales.JuegoCanibales;
 import practica.modelo.minijuegos.Garrafas.JuegoGarrafas;
+import practica.modelo.minijuegos.Laberinto.JuegoLaberinto;
 import practica.modelo.minijuegos.LoboColCabra.JuegoLoboColCabra;
 import practica.modelo.minijuegos.Mochila.JuegoMochila;
 import practica.modelo.minijuegos.Mono.JuegoMono;
@@ -54,7 +55,7 @@ public class GestorMinijuegos {
 		  			 break;
 		  case 6: juego = new JuegoMochila();
 			 				break;
-		  case 7: juego = new JuegoBuscarLetras();
+		  case 7: juego = new JuegoLaberinto();
 			 		break;
 			 
 		  case 8: juego = new JuegoPalillos();
