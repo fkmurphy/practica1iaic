@@ -147,4 +147,9 @@ public class GestorModelo {
 		return this.generador.generaCasino3(97,3,this);
 	 
 	}
+
+	public Casino cargaCasino(String ruta, GestorModelo gestorModelo) {
+		// TODO Auto-generated method stub
+		return this.cargaCasino(ruta, gestorModelo);
+	}
 }
