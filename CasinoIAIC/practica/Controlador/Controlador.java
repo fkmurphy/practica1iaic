@@ -52,7 +52,7 @@ public class Controlador {
 	
 	public void cargardeFichero(String ruta)
 	{
-		System.out.println("Hay que hacerlo JuanManolo!");
+		this.gestorModelo.cargaCasino(ruta,this.gestorModelo);
 	}
 
 	public void guardarCasino()
