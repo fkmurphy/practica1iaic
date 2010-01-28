@@ -56,8 +56,8 @@ public class NB {
 		            NB temp = (NB)arg;
 
 		            // Se realiza la comparacion y se devuelve el resultado
-		            ok=( this.getVacio() == temp.getVacio() )
-		            &&(this.getTablero()==temp.getTablero());
+		            ok=( this.getVacio() == temp.getVacio() );
+		 //           &&(this.getTablero()==temp.getTablero());
 		           
 		           
 		            }

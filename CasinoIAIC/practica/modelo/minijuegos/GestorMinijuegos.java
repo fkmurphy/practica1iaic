@@ -1,15 +1,17 @@
 package practica.modelo.minijuegos;
 
 import practica.Controlador.Controlador;
-import practica.modelo.minijuegos.Caballo.JuegoCaballo;
+
 import practica.modelo.minijuegos.Canibales.JuegoCanibales;
 import practica.modelo.minijuegos.Garrafas.JuegoGarrafas;
 import practica.modelo.minijuegos.LoboColCabra.JuegoLoboColCabra;
+import practica.modelo.minijuegos.Mochila.JuegoMochila;
 import practica.modelo.minijuegos.Mono.JuegoMono;
+import practica.modelo.minijuegos.NB.JuegoNB;
 import practica.modelo.minijuegos.Palillos.JuegoPalillos;
 import practica.modelo.minijuegos.Puzzle.JuegoPuzzle;
 import practica.modelo.minijuegos.TorreHanoi.JuegoTorreHannoi;
-import practica.modelo.minijuegos.banderaHolandesa.JuegoBanderaHolandesa;
+
 import practica.modelo.minijuegos.buscarletras.JuegoBuscarLetras;
 import practica.modelo.minijuegos.nReinas2.JuegoNReinas;
 
@@ -50,9 +52,8 @@ public class GestorMinijuegos {
 		  
 		  case 5: juego = new JuegoNReinas();
 		  			 break;
-		  case 6: juego = new JuegoBanderaHolandesa();
-			 		break;
-			 
+		  case 6: juego = new JuegoMochila();
+			 				break;
 		  case 7: juego = new JuegoBuscarLetras();
 			 		break;
 			 
@@ -65,9 +66,8 @@ public class GestorMinijuegos {
 		  case 10: juego = new JuegoPuzzle();
 			 		break;
 			 
-		  case 11: juego = new JuegoCaballo();
-			 		break;
-			 
+		  case 11: juego = new JuegoNB();
+			 				break;
 		  case 12: juego = new JuegoBuscarLetras();
 			 		break;
 			 

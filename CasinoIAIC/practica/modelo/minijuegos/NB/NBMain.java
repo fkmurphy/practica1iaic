@@ -32,7 +32,7 @@ public class NBMain {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		//NBAStarDemo(); 
+		NBAStarDemo(); 
 		NBDLSDemo();
 		//NBUniformCostSearchDemo() ;
 		NBAStarManhattanDemo(); 

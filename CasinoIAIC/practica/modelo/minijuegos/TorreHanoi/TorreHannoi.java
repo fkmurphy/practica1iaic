@@ -62,10 +62,10 @@ public class TorreHannoi {
 	          
 	            ok=( this.getCima1() == temp.getCima1())
 	            &&(this.getCima2()==temp.getCima2())
-	             &&(this.getCima3()==temp.getCima3())
-	              &&(this.getP1()==temp.getP1())
-	              &&(this.getP2()==temp.getP2())
-	              &&(this.getP3()==temp.getP3());
+	             &&(this.getCima3()==temp.getCima3());
+	             // &&(this.getP1()==temp.getP1())
+	            //  &&(this.getP2()==temp.getP2())
+	           //   &&(this.getP3()==temp.getP3());
 	              
 	            
 	            }
