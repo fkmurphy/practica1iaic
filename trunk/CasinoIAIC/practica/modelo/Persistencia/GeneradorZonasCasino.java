@@ -1,6 +1,7 @@
 package practica.modelo.Persistencia;
 
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Iterator;
@@ -214,7 +215,7 @@ public class GeneradorZonasCasino {
 	      Jugador jugador=new Jugador(zonaOrigen);
 
 	      StringBuffer printCasinoMiniJuego=new StringBuffer();
-
+	      printCasinoMiniJuego.append("Id Zona,Tipo,Juego,Estrategia,NumContiguos,c1,c2,c3,c4,c5,c6,c7,c8,c9,c10,\n");
 	      for (int i=0;i<listaZonas.size();i++) {
 
 	/*           printEspacioMicromundo.append(listaPlanetas.get(i)+" "
@@ -224,12 +225,12 @@ public class GeneradorZonasCasino {
 	                          +listaPlanetas.get(i).getEstimacionDistancia()+"\n");
 	*/
 
-	    	  printCasinoMiniJuego.append(listaZonas.get(i).getIdZona()+" "
-	                          +listaZonas.get(i).getTipoZona()+" "
-	                          +listaZonas.get(i).getContiguas2string()+" "
-	                          +"EstimDist: "
-	                          +listaZonas.get(i).getDificultadPropagada()+" "+listaZonas.get(i).getPuerta().getIdJuego()+" "+listaZonas.get(i).getPuerta().getIdEstrategia()
-	    	  				  +" saltos: "+listaZonas.get(i).getSaltos()+"\n");
+	    	  printCasinoMiniJuego.append(listaZonas.get(i).getIdZona()+","
+	                          +listaZonas.get(i).getTipoZona()+","
+	                          +listaZonas.get(i).getPuerta().getIdJuego()+","
+	                          +listaZonas.get(i).getPuerta().getIdEstrategia()+","	                          
+	                          +listaZonas.get(i).getNumContiguos()+","
+	                          +listaZonas.get(i).getContiguas2string2()+"\n");
 	          }
 	     
 	      return new Casino(zonaOrigen,jugador,numeroZonas,numeroObjetivos,printCasinoMiniJuego.toString());
@@ -323,6 +324,112 @@ public class GeneradorZonasCasino {
 		
 	}
 	
+	public Casino cargaCasino(String fileName,GestorModelo gm) throws FileNotFoundException{
+	CsvReader reader;
+	boolean error=false;
+	ArrayList<Zona> listaZonas=new ArrayList<Zona>();
+	try {
+		reader = new CsvReader(fileName);
+
+
+		reader.readHeaders();
+		 
+		 Puerta nuevaPuerta;
+		while (reader.readRecord())
+		{
+			int idZona = Integer.parseInt(reader.get("Id Zona"));
+			//String tipoZona = reader.get("Tipo");
+			int juego = Integer.parseInt(reader.get("Juego"));
+			int estrategia = Integer.parseInt(reader.get("Estrategia"));
+			int numContiguos  = Integer.parseInt(reader.get("NumContiguos"));
+			
+			
+			// Aqui lo interpretamos
+
+			if(idZona<3){ // creamos origenes
+				nuevaPuerta = new Puerta(gm,1,1);   //a–ade juego y estrategia a la puerta
+		    	 nuevaPuerta.setApuesta(0);  //a–ade apuesta a la puerta
+		    	 listaZonas.add(new Zona(nuevaPuerta,idZona,TipoZona.OBJETIVO));
+		    	 listaZonas.get(listaZonas.size()-1).setDificultad(1);
+				
+			}else{  // creamos zonas intermedias
+				nuevaPuerta = new Puerta(gm,juego,estrategia);   //a–ade juego y estrategia a la puerta
+		    	 nuevaPuerta.setApuesta(this.dameDificultadJuego(juego)*5);  //a–ade apuesta a la puerta		
+		    	 listaZonas.add(new Zona(nuevaPuerta,idZona,TipoZona.INTERMEDIO));
+		    	 listaZonas.get(listaZonas.size()-1).setDificultad(this.dameDificultadJuego(juego));
+				
+			}
+			
+			//a–adimos los contiguos
+			for (int i=1;i<=numContiguos;i++){
+				int idContiguo  = Integer.parseInt(reader.get("c"+i));
+				if (idContiguo<idZona){ //a–ade contiguo
+					
+					listaZonas.get(idZona).setZonaContigua(listaZonas.get(idContiguo),listaZonas.get(idContiguo).getDificultadLocal());
+	            	 listaZonas.get(idContiguo).setZonaContigua(listaZonas.get(idZona),listaZonas.get(idZona).getDificultadLocal());
+				}
+			}
+			
+			
+		}//fin de while
+
+		reader.close();
+	} catch (Exception e) {
+		error =true;
+	}
+	
+	
+	 for (int i=0;i<3;i++){
+    	 listaZonas.get(i).propagaDificultad(0, null,0,2500);
+      }
+
+    int min=Integer.MAX_VALUE;
+    int max=Integer.MIN_VALUE;
+
+      for (int i=0;i<listaZonas.size();i++){
+
+      int aux=listaZonas.get(i).getDificultadPropagada();
+
+      if (min>aux)
+          min=aux;
+      if (max<aux)
+          max=aux;
+
+      }
+
+      GestorMinijuegos.setRango(min,max);
+
+      Zona zonaOrigen=generaZonaOrigen(listaZonas); //busca la zona mas alejada de los objetivos y lo marca como origen
+
+      Jugador jugador=new Jugador(zonaOrigen);
+
+      StringBuffer printCasinoMiniJuego=new StringBuffer();
+
+      for (int i=0;i<listaZonas.size();i++) {
+
+/*           printEspacioMicromundo.append(listaPlanetas.get(i)+" "
+                          +listaPlanetas.get(i).getEstado()+" "
+                          +listaPlanetas.get(i).printHijosContiguos()+" "
+                          +listaPlanetas.get(i).getNaveHostil()+" EstimDist: "
+                          +listaPlanetas.get(i).getEstimacionDistancia()+"\n");
+*/
+
+    	  printCasinoMiniJuego.append(listaZonas.get(i).getIdZona()+" "
+                          +listaZonas.get(i).getTipoZona()+" "
+                          +listaZonas.get(i).getContiguas2string()+" "
+                          +"EstimDist: "
+                          +listaZonas.get(i).getDificultadPropagada()+" "+listaZonas.get(i).getPuerta().getIdJuego()+" "+listaZonas.get(i).getPuerta().getIdEstrategia()
+    	  				  +" saltos: "+listaZonas.get(i).getSaltos()+"\n");
+          }
+     
+      return new Casino(zonaOrigen,jugador,100,3,printCasinoMiniJuego.toString());
+     
+	
+	
+	
+	
+	
+}
 
 
 }
