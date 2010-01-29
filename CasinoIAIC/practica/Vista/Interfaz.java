@@ -430,6 +430,11 @@ import practica.modelo.casino.Casino;
 			
 		}
 
+		public void limpiarVistaCasino() {
+			this.jTextArea1.setText("");
+			
+		}
+
 	}
 
 
