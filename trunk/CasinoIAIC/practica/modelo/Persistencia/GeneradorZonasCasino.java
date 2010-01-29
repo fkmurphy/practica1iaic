@@ -439,9 +439,10 @@ public class GeneradorZonasCasino {
                   +listaZonas.get(i).getPuerta().getIdJuego()+","
                   +listaZonas.get(i).getPuerta().getIdEstrategia()+","	                          
                   +listaZonas.get(i).getNumContiguos()+","
-                  +listaZonas.get(i).getContiguas2string2()+"\n");
+                  +listaZonas.get(i).getContiguas2string2()
+    	  		  +listaZonas.get(i).getDificultadPropagada()+"\n");	
           }
-     
+      		
       return new Casino(zonaOrigen,jugador,100,3,printCasinoMiniJuego.toString());
      
 	

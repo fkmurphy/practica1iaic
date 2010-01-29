@@ -21,6 +21,9 @@ public class Main {
 		controlador.setVista(interfaz);
 		interfaz.registerControlador(controlador);
 		interfaz.setVisible(true);
+		
+		
+		
 	}
 
 }
