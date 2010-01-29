@@ -215,7 +215,7 @@ public class GeneradorZonasCasino {
 	      Jugador jugador=new Jugador(zonaOrigen);
 
 	      StringBuffer printCasinoMiniJuego=new StringBuffer();
-	      printCasinoMiniJuego.append("Id Zona,Tipo,Juego,Estrategia,NumContiguos,c1,c2,c3,c4,c5,c6,c7,c8,c9,c10,\n");
+	      printCasinoMiniJuego.append("Id Zona,Tipo,Juego,Estrategia,NumContiguos,c1,c2,c3,c4,c5,c6,c7,c8,c9,c10\n");
 	      for (int i=0;i<listaZonas.size();i++) {
 
 	/*           printEspacioMicromundo.append(listaPlanetas.get(i)+" "
