@@ -66,5 +66,6 @@ public class Controlador {
 	public void ejecutaCasino()
 	{
 		this.gestorModelo.ejecutaCasino();
+		this.interfaz.volcarVistaALog();
 	}
 }
