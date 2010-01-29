@@ -191,7 +191,7 @@ public class GeneradorZonasCasino {
 
 	 
 	    // for (int i=0;i<numeroObjetivos;i++){
-	    	 listaZonas.get(0).propagaDificultad(0, null,0,2500);
+	    	 listaZonas.get(0).propagaDificultad(0, null,0,500);
 	    //  }
 
 	    int min=Integer.MAX_VALUE;
