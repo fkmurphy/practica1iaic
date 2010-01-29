@@ -199,22 +199,22 @@ return salida;
         boolean propaga = false;
         int localDeep=deep;
         if (localDeep <= maxDeep) {
+        	
+        	if(this.saltos>localDeep){
+            	this.saltos=localDeep; //no esotoy sguro
+            }
 
         	localDeep++;
             
 
             if (this.tipoZona.equals(TipoZona.OBJETIVO)) {
                 this.dificultadPropagada = 0;
-                this.saltos=0;
                 propaga = true;
             } else if (contiguos.containsKey(zonaAnterior)) { // zonaAnterior --> null cuando es zonaObjetivo	
                 
             	Integer distanciaZonaAnterior = new Integer(contiguos.get(zonaAnterior));
                 if (this.dificultadPropagada > estimacionObjetivo + distanciaZonaAnterior) {
                     this.dificultadPropagada = estimacionObjetivo + distanciaZonaAnterior;
-                    if(this.saltos>localDeep){
-                    	this.saltos=localDeep; //no esotoy sguro
-                    }
                     propaga = true;
                 }
 
@@ -300,6 +300,12 @@ return salida;
 	public int getNumContiguos(){
 		return this.contiguos.size();
 	}
+
+	public void setDificultadPropagada(int estimacion) {
+			this.dificultadPropagada = estimacion;
+	}
+
+	
 	
 	
 }
