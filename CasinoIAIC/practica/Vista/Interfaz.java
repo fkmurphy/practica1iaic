@@ -197,7 +197,7 @@ import practica.modelo.casino.Casino;
 	        });
 	        jMenu3.add(jMenuItem14);
 
-	        jMenuItem15.setText("Mochila");
+	        jMenuItem15.setText("Bandera");
 	        jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
 	            public void actionPerformed(java.awt.event.ActionEvent evt) {
 	                jMenuItem15ActionPerformed(evt);
@@ -349,7 +349,7 @@ import practica.modelo.casino.Casino;
 	    }
 
 	    private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {
-	        System.out.println("Mochila");
+	        System.out.println("Bandera");
 	        this.miControlador.ejecutarJuego(6);
 	    }
 	    
