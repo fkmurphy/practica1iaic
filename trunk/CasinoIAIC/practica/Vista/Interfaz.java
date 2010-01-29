@@ -3,6 +3,8 @@ package practica.Vista;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -379,6 +381,23 @@ import practica.modelo.casino.Casino;
 	    {
 	    	//this.jTextArea2.setText(resultado);
 	    	this.jTextArea2.append(resultado);
+	    }
+	    
+	    
+	    public void volcarVistaALog()
+	    {
+	    	try {
+				FileWriter FicheroLog = new FileWriter("Nuevolog.txt");
+				FicheroLog.write("!!!!!!!!!!!!!!!!!!!!! CASINO  !!!!!!!!!!!!!!!!!!!!!!!!!");
+				FicheroLog.write(this.jTextArea1.getText());
+				FicheroLog.write("!!!!!!!!!!!!!!!!!!!!! PASO A PASO CASINO  !!!!!!!!!!!!!!!!!!!!!!!!!");
+				FicheroLog.write(this.jTextArea2.getText());
+				FicheroLog.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	    	
 	    }
 	    /**
 	    * @param args the command line arguments
