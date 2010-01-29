@@ -13,6 +13,7 @@ import practica.modelo.minijuegos.Palillos.JuegoPalillos;
 import practica.modelo.minijuegos.Puzzle.JuegoPuzzle;
 import practica.modelo.minijuegos.TorreHanoi.JuegoTorreHannoi;
 
+import practica.modelo.minijuegos.banderaHolandesa.JuegoBanderaHolandesa;
 import practica.modelo.minijuegos.buscarletras.JuegoBuscarLetras;
 import practica.modelo.minijuegos.nReinas2.JuegoNReinas;
 
@@ -53,7 +54,7 @@ public class GestorMinijuegos {
 		  
 		  case 5: juego = new JuegoNReinas();
 		  			 break;
-		  case 6: juego = new JuegoMochila();
+		  case 6: juego = new JuegoBanderaHolandesa();
 			 				break;
 		  case 7: juego = new JuegoLaberinto();
 			 		break;
