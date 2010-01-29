@@ -328,6 +328,7 @@ public class GeneradorZonasCasino {
 	CsvReader reader;
 	boolean error=false;
 	ArrayList<Zona> listaZonas=new ArrayList<Zona>();
+	int idZonaOrigen = -1;
 	try {
 		reader = new CsvReader(fileName);
 
@@ -338,7 +339,7 @@ public class GeneradorZonasCasino {
 		while (reader.readRecord())
 		{
 			int idZona = Integer.parseInt(reader.get("Id Zona"));
-			//String tipoZona = reader.get("Tipo");
+			String tipoZona = reader.get("Tipo");
 			int juego = Integer.parseInt(reader.get("Juego"));
 			int estrategia = Integer.parseInt(reader.get("Estrategia"));
 			int numContiguos  = Integer.parseInt(reader.get("NumContiguos"));
@@ -354,8 +355,13 @@ public class GeneradorZonasCasino {
 				
 			}else{  // creamos zonas intermedias
 				nuevaPuerta = new Puerta(gm,juego,estrategia);   //a–ade juego y estrategia a la puerta
-		    	 nuevaPuerta.setApuesta(this.dameDificultadJuego(juego)*5);  //a–ade apuesta a la puerta		
-		    	 listaZonas.add(new Zona(nuevaPuerta,idZona,TipoZona.INTERMEDIO));
+		    	 nuevaPuerta.setApuesta(this.dameDificultadJuego(juego)*5);  //a–ade apuesta a la puerta
+		    	 if(tipoZona.equalsIgnoreCase("ORIGEN")){
+			    	 listaZonas.add(new Zona(nuevaPuerta,idZona,TipoZona.ORIGEN));
+			    	 idZonaOrigen=idZona;
+		    	 }else{
+			    	 listaZonas.add(new Zona(nuevaPuerta,idZona,TipoZona.INTERMEDIO));
+		    	 }
 		    	 listaZonas.get(listaZonas.size()-1).setDificultad(this.dameDificultadJuego(juego));
 				
 			}
@@ -399,9 +405,9 @@ public class GeneradorZonasCasino {
 
       GestorMinijuegos.setRango(min,max);
 
-      Zona zonaOrigen=generaZonaOrigen(listaZonas); //busca la zona mas alejada de los objetivos y lo marca como origen
+      Zona zonaOrigen=listaZonas.get(idZonaOrigen);//generaZonaOrigen(listaZonas); //busca la zona mas alejada de los objetivos y lo marca como origen
 
-      Jugador jugador=new Jugador(zonaOrigen);
+      Jugador jugador=new Jugador(listaZonas.get(idZonaOrigen));
 
       StringBuffer printCasinoMiniJuego=new StringBuffer();
 

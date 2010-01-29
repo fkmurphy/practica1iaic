@@ -62,9 +62,7 @@ public class Zona {
 		this.saltos=Integer.MAX_VALUE;
 
         this.contiguos=new Hashtable<Zona,Integer>();
-        if (this.tipoZona.equals(tipoZona.OBJETIVO))
-            this.dificultadPropagada=new Integer(0);
-        else dificultadPropagada=Integer.MAX_VALUE;
+       dificultadPropagada=Integer.MAX_VALUE;
 
 	}
 	
@@ -148,10 +146,7 @@ public class Zona {
 		return this.tipoZona == TipoZona.OBJETIVO;
 	}
 
-	public void setDificultadPropagada(int propagacion)
-	{
-		this.dificultadPropagada=propagacion;
-	}
+
 	
 	public int getDificultadPropagada()
 	{
@@ -198,14 +193,14 @@ return salida;
 		
 	}
 	
-	public void propagaDificultad(int estimacionObjetivo, Zona zonaAnterior, int saltos, int maxSaltos) {
+	public void propagaDificultad(int estimacionObjetivo, Zona zonaAnterior, int deep, int maxDeep) {
 
 
         boolean propaga = false;
-        int saltosloc=saltos;
-        if (saltosloc <= maxSaltos) {
+        int localDeep=deep;
+        if (localDeep <= maxDeep) {
 
-            saltosloc++;
+        	localDeep++;
             
 
             if (this.tipoZona.equals(TipoZona.OBJETIVO)) {
@@ -217,8 +212,9 @@ return salida;
             	Integer distanciaZonaAnterior = new Integer(contiguos.get(zonaAnterior));
                 if (this.dificultadPropagada > estimacionObjetivo + distanciaZonaAnterior) {
                     this.dificultadPropagada = estimacionObjetivo + distanciaZonaAnterior;
-                    if(saltosloc<this.saltos)
-                    	this.saltos=saltosloc;
+                    if(this.saltos>localDeep){
+                    	this.saltos=localDeep; //no esotoy sguro
+                    }
                     propaga = true;
                 }
 
@@ -229,15 +225,16 @@ return salida;
                 while (it.hasNext()) {
                     Zona z = ((Zona) it.next());
                     if (!z.equals(zonaAnterior)) {
-                        z.propagaDificultad(dificultadPropagada,this, saltosloc, maxSaltos);
+                        z.propagaDificultad(dificultadPropagada,this, localDeep, maxDeep);
                     }
                 }
             }
         }
     }
 	
-	public void propagaDificultadArray(int estimacionObjetivo, Zona zonaAnterior, int saltos, int maxSaltos) {
-
+	public void propagaDificultad2(int estimacionObjetivo, Zona zonaAnterior, int saltos, int maxSaltos) {
+		boolean propaga =false;
+		
 /*
         boolean propaga = false;
         int saltosloc=saltos;
