@@ -53,7 +53,7 @@ public class Controlador {
 	}
 	
 	public void cargardeFichero(String ruta) 
-	{
+	{		this.gestorModelo.setControlador(this);
 			this.gestorModelo.cargaCasino(ruta);
 	}
 
