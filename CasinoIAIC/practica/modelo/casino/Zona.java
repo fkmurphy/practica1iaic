@@ -186,7 +186,7 @@ public class Zona {
 		Zona zona = (Zona) it.next();
 		salida+= zona.getIdZona()+",";
 	}
-	for (int i=cont;i<10;i++){
+	for (int i=cont;i<9;i++){
 		salida+=",";
 	}
 return salida;

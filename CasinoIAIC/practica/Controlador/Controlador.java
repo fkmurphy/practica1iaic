@@ -1,5 +1,7 @@
 package practica.Controlador;
 
+import java.io.FileNotFoundException;
+
 import practica.Vista.Interfaz;
 import practica.modelo.GestorModelo;
 import practica.modelo.Log.Log;
@@ -50,9 +52,14 @@ public class Controlador {
 		
 	}
 	
-	public void cargardeFichero(String ruta)
+	public void cargardeFichero(String ruta) 
 	{
-		this.gestorModelo.cargaCasino(ruta,this.gestorModelo);
+		try {
+			this.gestorModelo.cargaCasino(ruta,this.gestorModelo);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void guardarCasino()

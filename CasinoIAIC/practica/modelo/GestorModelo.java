@@ -1,5 +1,6 @@
 package practica.modelo;
 
+import java.io.FileNotFoundException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
@@ -148,8 +149,10 @@ public class GestorModelo {
 	 
 	}
 
-	public Casino cargaCasino(String ruta, GestorModelo gestorModelo) {
-		// TODO Auto-generated method stub
-		return this.cargaCasino(ruta, gestorModelo);
+	public void cargaCasino(String ruta, GestorModelo gestorModelo) throws FileNotFoundException {
+		
+		casino = this.generador.cargaCasino(ruta, gestorModelo);
+		//casino = this.generador.generaCasino3(100, 3); 
+		this.interfaz.mostrarCasino(casino.getCasinoString());
 	}
 }
