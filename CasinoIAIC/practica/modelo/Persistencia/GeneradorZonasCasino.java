@@ -270,45 +270,28 @@ public class GeneradorZonasCasino {
 
 
 	private static Zona generaZonaOrigen(ArrayList<Zona> listaZonas) {
-		/* int maxDistancia=Integer.MIN_VALUE;
-	        int indice=-1;
-	        int i=0;
-
-	        Iterator it=listaPlanetas.iterator();
-
-	        while (it.hasNext()){
-	           planeta p= ((planeta)it.next());
-
-	           if (p.getEstimacionDistancia()>maxDistancia)
-	            {  maxDistancia=p.getEstimacionDistancia();
-	               indice=i;
-	            }
-
-	           i++;
-	        }
-
-	        listaPlanetas.get(indice).setEstado(planetaEstado.ORIGEN);
-
-	        System.out.print(listaPlanetas.get(indice).getEstimacionDistancia()+"\n");
-
-
-	        return listaPlanetas.get(indice);
-
-	        */
-	        //////////////
+	
 
 		        int maxDistancia=Integer.MIN_VALUE;
 		        int indice=-1;
 		        int i=0;
+		        int mindiff=Integer.MAX_VALUE;
 
 		        Iterator it=listaZonas.iterator();
 
 		        while (it.hasNext()){
 		           Zona p= ((Zona)it.next());
 
-		           if ((p.getSaltos()>maxDistancia)&&(p.getSaltos()<Integer.MAX_VALUE)&&(p.getTipoZona().equals(TipoZona.INTERMEDIO)))//.getDificultadPropagada()>maxDistancia)
-		            {  maxDistancia=p.getSaltos();
-		               indice=i;
+		           if ((p.getSaltos()>=maxDistancia)&&(p.getSaltos()<Integer.MAX_VALUE)&&(p.getTipoZona().equals(TipoZona.INTERMEDIO)))//.getDificultadPropagada()>maxDistancia)
+		            {  
+		        	   if(p.getSaltos()>maxDistancia){
+		        		   maxDistancia=p.getSaltos();
+		        	   	   indice=i;
+		        	   }else if (p.getDificultadPropagada()<mindiff){
+		        		   mindiff=p.getDificultadPropagada();
+		        		   indice=i;
+		        	   }
+		        	   
 		            }
 
 		           i++;
