@@ -4,12 +4,9 @@ import practica.Controlador.Controlador;
 import practica.modelo.Log.Log;
 
 public class Jugador {
-	
-	
-	
+		
 	private Zona zonaActual;
-	
-	private int diasGanados;
+	private static int diasGanados;
 	
 	//private Controlador controlador;
 	
