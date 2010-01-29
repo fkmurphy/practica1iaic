@@ -153,7 +153,8 @@ public class GestorModelo {
 		try {
 			casino = this.generador.cargaCasino(ruta, this);		
 		//casino = this.generador.generaCasino3(100, 3); 
-		this.interfaz.mostrarCasino(casino.getCasinoString());
+			this.interfaz.limpiarVistaCasino();
+			this.interfaz.mostrarCasino(casino.getCasinoString());
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
