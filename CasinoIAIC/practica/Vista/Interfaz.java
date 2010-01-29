@@ -23,6 +23,7 @@ import practica.modelo.casino.Casino;
 	    public Interfaz() {
 	        initComponents();
 	        this.jMenuItem3.setVisible(false);
+	        this.jMenuItem1.setVisible(false);
 	        
 	    }
 
