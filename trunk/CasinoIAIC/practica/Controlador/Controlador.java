@@ -54,12 +54,7 @@ public class Controlador {
 	
 	public void cargardeFichero(String ruta) 
 	{
-		try {
-			this.gestorModelo.cargaCasino(ruta,this.gestorModelo);
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			this.gestorModelo.cargaCasino(ruta);
 	}
 
 	public void guardarCasino()
