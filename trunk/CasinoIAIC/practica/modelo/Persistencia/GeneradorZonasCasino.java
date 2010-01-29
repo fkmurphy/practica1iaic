@@ -173,13 +173,13 @@ public class GeneradorZonasCasino {
 	             while ((indice==i) || (listaZonas.get(i).contiene(listaZonas.get(indice)))){
 	             indice= indiceContiguo.nextInt(numeroZonas+numeroObjetivos);//indice contiene un idZona que no es contigua (aœn)
 	             }
-	             if((listaZonas.get(i).getNumContiguos()<3)&&(listaZonas.get(indice).getNumContiguos()<3)){
+	             if((listaZonas.get(i).getNumContiguos()<2)&&(listaZonas.get(indice).getNumContiguos()<2)){
 	            	 listaZonas.get(i).setZonaContigua(listaZonas.get(indice),listaZonas.get(indice).getDificultadLocal());
 	            	 listaZonas.get(indice).setZonaContigua(listaZonas.get(i),listaZonas.get(i).getDificultadLocal());
 	             }
 	             j++;
 
-	         }if (listaZonas.get(i).getNumContiguos()<4){
+	         }if (listaZonas.get(i).getNumContiguos()<3){
 	        	 indice = (i+5)%(numeroZonas+numeroObjetivos);
 	        	 listaZonas.get(i).setZonaContigua(listaZonas.get(indice),listaZonas.get(indice).getDificultadLocal());
             	 listaZonas.get(indice).setZonaContigua(listaZonas.get(i),listaZonas.get(i).getDificultadLocal());
@@ -448,13 +448,10 @@ public class GeneradorZonasCasino {
           			+listaZonas.get(i).getSaltos()+"    ,DiffPropagada "
           			+listaZonas.get(i).getDificultadPropagada()+"\n");
     	  
-    	  printCasinoMiniJuego.append(listaZonas.get(i).getIdZona()+","
-                  +listaZonas.get(i).getTipoZona()+","
-                  +listaZonas.get(i).getPuerta().getIdJuego()+","
-                  +listaZonas.get(i).getPuerta().getIdEstrategia()+","	                          
-                  +listaZonas.get(i).getNumContiguos()+","
-                  +listaZonas.get(i).getContiguas2string2()
-    	  		  +listaZonas.get(i).getDificultadPropagada()+"\n");	
+    	  printCasinoMiniJuego.append("Zona "+listaZonas.get(i).getIdZona()
+                  +" Tipo "+listaZonas.get(i).getTipoZona()	                          
+                  +" Contiguas "+listaZonas.get(i).getContiguas2string2()
+    	  		  +"\tEstimacion "+listaZonas.get(i).getDificultadPropagada()+"\n");	
           }
       		
       return new Casino(zonaOrigen,jugador,100,3,printCasinoMiniJuego.toString());
