@@ -218,12 +218,14 @@ public class GeneradorZonasCasino {
 	      printCasinoMiniJuego.append("Id Zona,Tipo,Juego,Estrategia,NumContiguos,c1,c2,c3,c4,c5,c6,c7,c8,c9,c10\n");
 	      for (int i=0;i<listaZonas.size();i++) {
 
-	/*           printEspacioMicromundo.append(listaPlanetas.get(i)+" "
-	                          +listaPlanetas.get(i).getEstado()+" "
-	                          +listaPlanetas.get(i).printHijosContiguos()+" "
-	                          +listaPlanetas.get(i).getNaveHostil()+" EstimDist: "
-	                          +listaPlanetas.get(i).getEstimacionDistancia()+"\n");
-	*/
+	           System.out.print(listaZonas.get(i).getIdZona()+",tipo "
+                       +listaZonas.get(i).getTipoZona()+",juego "
+                       +listaZonas.get(i).getPuerta().getIdJuego()+",estrat "
+                       +listaZonas.get(i).getPuerta().getIdEstrategia()+",contiguos "
+                       +listaZonas.get(i).getContiguas2string2()+",saltos "
+	           			+listaZonas.get(i).getSaltos()+",DiffPropagada "
+	           			+listaZonas.get(i).getDificultadPropagada()+"\n");
+	
 
 	    	  printCasinoMiniJuego.append(listaZonas.get(i).getIdZona()+","
 	                          +listaZonas.get(i).getTipoZona()+","
@@ -386,7 +388,7 @@ public class GeneradorZonasCasino {
 	
 	
 	 for (int i=0;i<3;i++){
-    	 listaZonas.get(i).propagaDificultad(0, null,0,2500);
+    	 listaZonas.get(i).propagaDificultad(0, null,0,100);
       }
 
     int min=Integer.MAX_VALUE;
