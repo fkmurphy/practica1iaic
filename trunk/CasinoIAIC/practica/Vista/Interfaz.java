@@ -1,5 +1,6 @@
 package practica.Vista;
 
+import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.FileOutputStream;
 
@@ -56,6 +57,7 @@ import practica.modelo.casino.Casino;
 	        jMenuItem13 = new javax.swing.JMenuItem();
 	        jMenuItem14 = new javax.swing.JMenuItem();
 	        jMenuItem15 = new javax.swing.JMenuItem();
+	        jMenuItem16 = new javax.swing.JMenuItem();
 
 	        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -203,6 +205,16 @@ import practica.modelo.casino.Casino;
 	                jMenuItem15ActionPerformed(evt);
 	            }
 	        });
+	        jMenu3.add(jMenuItem16);
+
+	        jMenuItem16.setText("NB");
+	        jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
+	            public void actionPerformed(java.awt.event.ActionEvent evt) {
+	                jMenuItem16ActionPerformed(evt);
+	            }
+
+				
+	        });
 	        jMenu3.add(jMenuItem15);
 
 	        jMenuBar1.add(jMenu3);
@@ -340,7 +352,7 @@ import practica.modelo.casino.Casino;
 
 	    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {
 	        System.out.println("BuscaLetras");
-	        this.miControlador.ejecutarJuego(7);
+	        this.miControlador.ejecutarJuego(12);
 	    }
 
 	    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {
@@ -353,6 +365,11 @@ import practica.modelo.casino.Casino;
 	        this.miControlador.ejecutarJuego(6);
 	    }
 	    
+	    private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {
+			System.out.println("NB");
+			this.miControlador.ejecutarJuego(11);
+			
+		}
 	    public  void mostrarMinijuegoParticular(StringBuffer resultado)
 	    {
 	    	this.jTextArea2.setText(resultado.toString());
@@ -389,6 +406,7 @@ import practica.modelo.casino.Casino;
 	    private javax.swing.JMenuItem jMenuItem13;
 	    private javax.swing.JMenuItem jMenuItem14;
 	    private javax.swing.JMenuItem jMenuItem15;
+	    private javax.swing.JMenuItem jMenuItem16;
 	    private javax.swing.JMenuItem jMenuItem2;
 	    private javax.swing.JMenuItem jMenuItem3;
 	    private javax.swing.JMenuItem jMenuItem4;
