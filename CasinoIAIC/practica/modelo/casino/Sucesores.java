@@ -65,7 +65,7 @@ public class Sucesores implements SuccessorFunction{
             Log.addCasino(zonaSucesora.dameNombreZona()+" ");
             successors.add(new Successor("El jugador se mueve de la zona " +casino.getJugador().getZonaActual().dameNombreZona() +
     				" a la zona de " + zonaSucesora.dameNombreZona() + "que es" + zonaSucesora.getTipoZona().toString()+"",casinoSucesor));
-         // this.controlador.vistaMuestraMinijuego("Me muevo de la zona" +casino.getJugador().getZonaActual().dameNombreZona() + " a la zona de " + zonaSucesora.dameNombreZona() + "que es" + zonaSucesora.getTipoZona().toString()+"");
+         // this.controlador.vistaMuestraMinijuego("El jugador ha decidido moverse a Me muevo de la zona" +casino.getJugador().getZonaActual().dameNombreZona() + " a la zona de " + zonaSucesora.dameNombreZona() + "que es" + zonaSucesora.getTipoZona().toString()+"");
         }
         
        
