@@ -200,9 +200,7 @@ return salida;
         int localDeep=deep;
         if (localDeep <= maxDeep) {
         	
-        	if(this.saltos>localDeep){
-            	this.saltos=localDeep; //no esotoy sguro
-            }
+        	
 
         	localDeep++;
             
@@ -215,6 +213,9 @@ return salida;
             	Integer distanciaZonaAnterior = new Integer(contiguos.get(zonaAnterior));
                 if (this.dificultadPropagada > estimacionObjetivo + distanciaZonaAnterior) {
                     this.dificultadPropagada = estimacionObjetivo + distanciaZonaAnterior;
+                    /*	if(this.saltos>deep){
+                    		this.saltos=deep;
+                    	}*/
                     propaga = true;
                 }
 
@@ -304,6 +305,23 @@ return salida;
 	public void setDificultadPropagada(int estimacion) {
 			this.dificultadPropagada = estimacion;
 	}
+
+	public void setSaltos(int s,Zona anterior) {
+		
+			if (this.saltos>s){
+				this.saltos=s;				
+			}
+			if(s<9){
+				 Iterator it = contiguos.keySet().iterator();
+	                while (it.hasNext()) {
+	                    Zona z = ((Zona) it.next());
+	                    if (!z.equals(anterior))
+	                    	z.setSaltos(s+1,this);
+	                    }
+	        }
+	}
+		
+	
 
 	
 	
