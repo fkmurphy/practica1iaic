@@ -19,6 +19,7 @@ import practica.modelo.casino.Casino;
 	    /** Creates new form Interfaz */
 	    public Interfaz() {
 	        initComponents();
+	        this.jMenuItem3.setVisible(false);
 	    }
 
 	    /** This method is called from within the constructor to
