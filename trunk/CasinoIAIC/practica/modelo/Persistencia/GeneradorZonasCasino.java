@@ -161,7 +161,7 @@ public class GeneradorZonasCasino {
 	         Random indiceContiguo = new Random();
 	         //Random numContiguos = new Random();
 
-	         int np=4;//numContiguos.nextInt(2);
+	         int np=2;//numContiguos.nextInt(2);
 
 
 
@@ -171,9 +171,9 @@ public class GeneradorZonasCasino {
 	        while(j<=np){
 
 	             while ((indice==i) || (listaZonas.get(i).contiene(listaZonas.get(indice)))){
-	             indice= indiceContiguo.nextInt(numeroZonas+numeroObjetivos);
+	             indice= indiceContiguo.nextInt(numeroZonas+numeroObjetivos);//indice contiene un idZona que no es contigua (aœn)
 	             }
-	             if((listaZonas.get(i).getNumContiguos()<4)&&(listaZonas.get(indice).getNumContiguos()<4)){
+	             if((listaZonas.get(i).getNumContiguos()<3)&&(listaZonas.get(indice).getNumContiguos()<3)){
 	            	 listaZonas.get(i).setZonaContigua(listaZonas.get(indice),listaZonas.get(indice).getDificultadLocal());
 	            	 listaZonas.get(indice).setZonaContigua(listaZonas.get(i),listaZonas.get(i).getDificultadLocal());
 	             }
@@ -191,7 +191,7 @@ public class GeneradorZonasCasino {
 
 	 
 	    // for (int i=0;i<numeroObjetivos;i++){
-	    	 listaZonas.get(0).propagaDificultad(0, null,0,500);
+	    	 listaZonas.get(0).propagaDificultad(0, null,0,50);
 	    //  }
 
 	    int min=Integer.MAX_VALUE;
@@ -209,6 +209,11 @@ public class GeneradorZonasCasino {
 	      }
 
 	      GestorMinijuegos.setRango(min,max);
+	      
+	    for (int i=0;i<numeroObjetivos;i++){
+	    	listaZonas.get(i).setSaltos(0,listaZonas.get(i)); //recursivamente aplicamos saltos
+	      }
+	      
 
 	      Zona zonaOrigen=generaZonaOrigen(listaZonas); //busca la zona mas alejada de los objetivos y lo marca como origen
 
@@ -265,6 +270,32 @@ public class GeneradorZonasCasino {
 
 
 	private static Zona generaZonaOrigen(ArrayList<Zona> listaZonas) {
+		/* int maxDistancia=Integer.MIN_VALUE;
+	        int indice=-1;
+	        int i=0;
+
+	        Iterator it=listaPlanetas.iterator();
+
+	        while (it.hasNext()){
+	           planeta p= ((planeta)it.next());
+
+	           if (p.getEstimacionDistancia()>maxDistancia)
+	            {  maxDistancia=p.getEstimacionDistancia();
+	               indice=i;
+	            }
+
+	           i++;
+	        }
+
+	        listaPlanetas.get(indice).setEstado(planetaEstado.ORIGEN);
+
+	        System.out.print(listaPlanetas.get(indice).getEstimacionDistancia()+"\n");
+
+
+	        return listaPlanetas.get(indice);
+
+	        */
+	        //////////////
 
 		        int maxDistancia=Integer.MIN_VALUE;
 		        int indice=-1;
@@ -275,7 +306,7 @@ public class GeneradorZonasCasino {
 		        while (it.hasNext()){
 		           Zona p= ((Zona)it.next());
 
-		           if ((p.getSaltos()>maxDistancia)&&(p.getTipoZona().equals(TipoZona.INTERMEDIO)))//.getDificultadPropagada()>maxDistancia)
+		           if ((p.getSaltos()>maxDistancia)&&(p.getSaltos()<Integer.MAX_VALUE)&&(p.getTipoZona().equals(TipoZona.INTERMEDIO)))//.getDificultadPropagada()>maxDistancia)
 		            {  maxDistancia=p.getSaltos();
 		               indice=i;
 		            }
