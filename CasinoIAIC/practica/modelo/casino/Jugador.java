@@ -63,8 +63,13 @@ public class Jugador {
 		int dinero=0;
 		 dinero = zona.getPuerta().ejecutaJuego();
 		if (dinero ==0)
+			
 			return false;
-		else return true;
+			
+		else{this.diasGanados+=dinero;
+			return true;
+		}
+			
 	}
 
 //
