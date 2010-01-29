@@ -149,10 +149,15 @@ public class GestorModelo {
 	 
 	}
 
-	public void cargaCasino(String ruta, GestorModelo gestorModelo) throws FileNotFoundException {
+	public void cargaCasino(String ruta) {
 		
-		casino = this.generador.cargaCasino(ruta, gestorModelo);
+		try {
+			casino = this.generador.cargaCasino(ruta, this);		
 		//casino = this.generador.generaCasino3(100, 3); 
 		this.interfaz.mostrarCasino(casino.getCasinoString());
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
