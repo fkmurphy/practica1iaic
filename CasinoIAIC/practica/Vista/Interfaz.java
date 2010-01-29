@@ -23,6 +23,7 @@ import practica.modelo.casino.Casino;
 	    public Interfaz() {
 	        initComponents();
 	        this.jMenuItem3.setVisible(false);
+	        
 	    }
 
 	    /** This method is called from within the constructor to
@@ -389,6 +390,7 @@ import practica.modelo.casino.Casino;
 	    	try {
 				FileWriter FicheroLog = new FileWriter("Nuevolog.txt");
 				FicheroLog.write("!!!!!!!!!!!!!!!!!!!!! CASINO  !!!!!!!!!!!!!!!!!!!!!!!!!");
+				FicheroLog.write("\n");
 				FicheroLog.write(this.jTextArea1.getText());
 				FicheroLog.write("!!!!!!!!!!!!!!!!!!!!! PASO A PASO CASINO  !!!!!!!!!!!!!!!!!!!!!!!!!");
 				FicheroLog.write(this.jTextArea2.getText());
