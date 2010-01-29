@@ -13,8 +13,8 @@ public class Objetivo implements GoalTest{
 		
 		if (casino.getJugador().getZonaActual().esObjetivo())
 			{this.controlador.vistaMuestraMinijuego("\n");
-			this.controlador.vistaMuestraMinijuego("Enhorabuena!!! El jugador del casino ha llegado a la zona de salida "); 
-			Log.addCasino("Enhorabuena!!! El jugador del casino ha llegado a la zona de salida ");
+			this.controlador.vistaMuestraMinijuego("Enhorabuena!!! El jugador del casino ha llegado a la zona de salida " + " y sus dias ganados son los siguientes " +casino.getJugador().getDiasGanados()); 
+			Log.addCasino("Enhorabuena!!! El jugador del casino ha llegado a la zona de salida " );
 			}
 			else {this.controlador.vistaMuestraMinijuego("\n");
 				Log.addCasino("La zona " + casino.getJugador().getZonaActual().dameNombreZona() + "no es una casilla de fin y ha de seguir jugando");
